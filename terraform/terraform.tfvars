@@ -1,6 +1,7 @@
 #These are used a overrides for any defaults in the variables.tf 
 # AWS Configuration
-aws_region = "eu-west-1"
+#aws_region = "eu-west-1"
+aws_region = "us-east-1"
 
 # Project Configuration
 project_name = "sentinel-aws-test"
@@ -20,3 +21,9 @@ instance_type    = "t2.micro"
 
 #ubuntu_ami
 ubuntu_ami = "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id"
+
+## Passing a single variable
+#terraform plan -var="environment=production"
+
+# Passing multiple variables
+#terraform apply -var="environment=production" -var="instance_count=5"
