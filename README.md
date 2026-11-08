@@ -1,7 +1,6 @@
 # Sentinel/Terraform Assignment.
 
 ## Introduction
-
 This assignment demonstrates creating Policy-as-code using Terraform and Sentinal. The intent is to enforce sovereignty for Ireland and IaC supply chain security requirements, and demonstrate policy enforcement in non-compliant and compliant situations. 
 
 ## Areas
@@ -19,34 +18,39 @@ This assignment demonstrates creating Policy-as-code using Terraform and Sentina
      - Approiate network security considerations. 
      - Restrictions on inbound SSH access. 
 
-
-## Test environment.
-
+## Terraform & Test environment.
 This environment has a single EC2 instance, RDS SQL database (1 node) and S3 storage (intended for backups/data copy within the environment). 
+(overkill for this assignment, but I wanted to learn terraform more.)
 
+This [tutorial](https://aws.plainenglish.io/building-aws-vpc-and-ec2-infrastructure-with-terraform-a-hands-on-devops-tutorial-4955eac76f4f) gave me the initial script setup (main.tf really).  Following the assignment and other prompts I split the script as follows :  
 
 main.tf : All AWS resource definitions
 variables.tf : Input variable declarations
 outputs.tf : Values to display after deployment
 terraform.tfvars : Actual variable values
-network.tf <to be created>
-providers.tf <to be created>
-versions.tf <to be created>
+network.tf : network components
+providers.tf provider versions
+versions.tf terraform versions
+
+(there is no need for "depends" in this scenario)
+
+I stood up the environment using Terraform apply and validatd some of the relevant aspects (all components in correct region, access between EC2 and RDS and S3 .. again , overkill)
+
+## Sentinel.
+- I created accounts on HCP Terraform and HCP Cloud (linking these 2 was promlematic and downloaded the sentinel binary file. )
+- Followed assignment/Gemini on structing the sentinel, test folders and content. 
+- Created a project and workspace on terraform hcl and linked this github repository to it. 
+- Created a run (plan only) which generated mock/test data to download. Placed this in the terraform folder. At this stage the .sentinel files  were not included in the repo.
+- Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
+  - With the mock data these pass. 
+  - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected. 
+  - I uploaded the .sentinel files 
+
+I validated , planned and built the environment once to confirm it was what I intended. 
+I used terraform plan -out=sentinelTF.tfplan to create a binary test plan
+From there I was able to output the JSON content terraform show -json sentinelTF.tfplan > mock-data.json to generate mock data. 
 
 
-
-
-
-
-
-Test backup. 
-````
-echo "Database backup test file data" > backup_test.sql
-aws s3 cp backup_test.sql s3://terraform-aws-vm-db-backups-assignment/
-upload: ./backup_test.sql to s3://terraform-aws-vm-db-backups-assignment/backup_test.sql
-````
-
- mysql -h terraform-aws-vm-mysql.cxiwko4io48i.eu-west-1.rds.amazonaws.com -P 3306 -u dbadmin -p --ssl-ca=./global-bundle.pem
 
 
 # Resources used.
@@ -69,7 +73,11 @@ I modified this as follows :
 # Accounts
 - Created HCP Cloud Account and Terraform HCP accounts.  From the classes earlier found that when the Terraform HCP account was created, adding the HCP Cloud account after forced it to try and link both, but the link broke.  Ended up (a number of hours) trying to delete the accounts and start over with a new ID. Very problematic. 
 
-# Terraform 
+
+
+
+https://medium.com/@bicutler/using-hashicorp-sentinel-to-implement-policy-as-code-within-your-terraform-provisioning-workflow-c89aac0ecc8
+https://mattias.engineer/blog/2024/hashicorp-sentinel-with-terraform/
 
 https://developer.hashicorp.com/terraform/language/style
 

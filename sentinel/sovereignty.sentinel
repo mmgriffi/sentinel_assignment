@@ -1,0 +1,44 @@
+import "tfplan/v2" as tfplan
+import "json"
+
+# Define approved AWS regions for sensitive data residency
+#allowed_regions = ["us-east-2"]
+allowed_regions = ["eu-west-1"]
+# Define AWS resource types that store sensitive data
+data_resources = [
+    "aws_s3_bucket",
+    "aws_db_instance",      # RDS Instances
+    "aws_dynamodb_table",
+]
+
+# Filter all resources being created or modified
+violating_resources = {}
+
+for tfplan.resource_changes as address, rc {
+    # Only evaluate if the resource type is in our sensitive data list
+    # and the action is a creation or modification
+    if rc.type in data_resources and (rc.change.actions contains "create" or rc.change.actions contains "update") {
+        
+        # Extract the AWS region attribute (AWS uses 'region', Azure uses 'location')
+        region = rc.change.after.region else null
+        
+        # Check if the region is valid and within the allowed list
+        if region is null or (region not in allowed_regions) {
+            violating_resources[address] = region
+        }
+    }
+}
+
+# Main rule validation
+main = rule {
+    length(violating_resources) is 0
+}
+
+# Print debugging information if violations occur
+if length(violating_resources) > 0 {
+    print("Data Residency Violation: Sensitive AWS resources found outside approved regions " + json.marshal(allowed_regions))
+    for violating_resources as addr, reg {
+        print("  - Resource: " + addr + " is deployed in: " + string(reg))
+    }
+}
+

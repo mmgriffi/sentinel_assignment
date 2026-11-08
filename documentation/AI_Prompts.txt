@@ -1,0 +1,123 @@
+### These prompts were all run against Google Gemini (I checked , they do not provide a version number)
+
+========================================================================================
+I'm trying to structure my terraform / sentinel folders and files. I only have a Terraform free account (limited 1 policy) . 
+This is the GitHub repository structure I was hoping for.
+
+<repo>
+├───sentinel
+│   |
+│   |___ allowed-providers.sentinel
+|   |___ network.sentinel
+| 
+├───terraform
+|   |  
+|   |___main.tf
+|     
+|___ sentinel.hcl
+
+I will wish to test a number of different terraform scripts against single policy definitions (by command line I guess )
+Perhaps "sentinel apply -config=sentinel.hcl sentinel/allowed-providers.sentinel"  (and switch other .sentinel files as required) 
+
+Is this feasible ? 
+========================================================================================
+Show me how to run a sentinel test using the CLI . 
+Use the attached "allowed-providers.sentinel" file, the passing file is "pass-correct-provider.json" and failing file "fail-correct-provider.json"
+Here is the planned structure of my repo
+
+<repo>
+├───sentinel
+│   |
+│   |___ allowed-providers.sentinel
+|   |___ network.sentinel
+| 
+├───terraform
+|   |  
+|   |___main.tf
+|
+|
+|____tests
+|  |
+|  |-allowed-providers
+|      |
+|      |-pass-correct-provider.json
+|      |-fail-correct-provider.json
+|     
+|___ sentinel.hcl
+
+Tasks:
+Verify the structure (folder names/ filenames)
+Provide the commands to run the tests.
+
+I have used this structure so far... does this look correct ? 
+C:.
+|
+├───documentation
+├───sentinel
+│   └───test
+│       └───allowed-providers
+└──|─terraform
+|   |__main.tf
+|   |_providers.tf  
+|   |_network.tf
+|   |_versions.tf
+|
+|
+|-sentinel.hcl
+
+Where will I run terraform init /plan (inside the terraform folder ? ) 
+
+========================================================================================
+
+Please review the attached terraform files, and sentinel scripts.
+(I provided network.tf, main.tf,providers.tf, versions.tf, variables.tf )
+
+The terraform files create an environment (network, compute and storage) and I wish to use sentinel to validate that the enviroment will the policy.   
+
+Constraints
+The terrafrom files are in <root>\terraform folder, sentinel files are in <root>\sentinel and pass/fail json files are in <root>\sentinel\test\allowed-providers. The sentinel.hcl file is in the repository root.  
+I will add additional policies later. 
+
+Task
+I will start with a policy check on providers.
+(1) Is this approach correct for sentinel/terraform ? 
+(2) Based on the terraform scripts provide the steps I need to follow to validate the policy. 
+(3) Outline the steps I need to take to expand this to additional policies. Next might be enforcing specific EC2 instance types. 
+
+========================================================================================
+I have defined an AWS infrastructure project in terraform with the structure shown
+|
+|--terraform
+   |
+   |-main.tf
+   |-network.tf
+   |-providers.tf
+   |-versions.tf
+   |-outputs.tf
+   |-variables.tf
+
+The project contains a VPC network with 2 subnets (1 private, 1 public) . 
+The compute layer is a single EC2 instance in the public subnet, data is a single node RDS SQL database in the private subnet. Additional storage is a S3 bucket. I have created the IAM profile and policy to allow the EC2 instance access the storage. 
+
+I then created a plan and binary output, and generated a json data
+terraform show -json sentinelTF.tfplan > mock-data.json.
+
+I wish to create sentinel tests which I can test from sentinel CLI for the following
+
+allowed-providers.sentinel (note we have already the script for this category and ran sentinel test )
+instance_type.sentinel
+network.sentinel
+sovereignty.sentinel
+encryption.sentinel. 
+
+Tasks
+Show me how to find and extract the data I need from the mock-data.json file for each of these sentinel files. 
+How to generate  pass / fail test files to match each category.
+
+Do you need additional data/files ? 
+========================================================================================
+
+#  Using Terrafrom online.
+I have a Terraform definition is on GitHub, I have not included any .hcl or .sentinel files yet. 
+Task :  Can you list the steps to connect my terraform online workspace to the repository and generate a plan / mock data. 
+I will then need to download the mock data to test some sentinel policies locally via CLI.
