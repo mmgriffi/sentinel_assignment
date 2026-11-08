@@ -1,7 +1,7 @@
 #These are used a overrides for any defaults in the variables.tf 
 # AWS Configuration
-#aws_region = "eu-west-1"
-aws_region = "us-east-1"
+aws_region = "eu-west-1"
+#aws_region = "us-east-1"
 
 # Project Configuration
 project_name = "sentinel-aws-test"
