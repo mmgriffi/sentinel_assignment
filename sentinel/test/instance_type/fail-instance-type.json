@@ -1,0 +1,21 @@
+{
+  "mock": {
+    "tfplan/v2": {
+      "resource_changes": [
+        {
+          "type": "aws_instance",
+          "mode": "managed",
+          "change": {
+            "actions": ["create"],
+            "after": {
+              "instance_type": "m5.4xlarge" 
+            }
+          }
+        }
+      ]
+    }
+  },
+  "test": {
+    "main": false
+  }
+}
