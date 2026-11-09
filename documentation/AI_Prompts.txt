@@ -121,3 +121,25 @@ Do you need additional data/files ?
 I have a Terraform definition is on GitHub, I have not included any .hcl or .sentinel files yet. 
 Task :  Can you list the steps to connect my terraform online workspace to the repository and generate a plan / mock data. 
 I will then need to download the mock data to test some sentinel policies locally via CLI.
+AWSTemplateFormatVersion: "2010-09-09"
+===========================================================================================
+
+I've been using sentinel to test policies at the command line with mock data generated from a terraform plan. 
+
+Can you describe a terraform / sentinel scenario  where a team would create policies and ensure any AWS infrastructure 
+changes are checked against that policy and they are effectively prevented from implementing those changes in a production scenario. 
+Running CLI checks against downloaded mock data is not enforcing the policy.
+
+I had the region variable in terraform.tfvars , with it's definition in variables.tf (this had a default). When I ran it with the change in tfvars file the run still passed which is not what I expected. 
+Should the sentinel.hcl file reference mock data anymore or does that matter ?
+
+if I remove the reference to the mock data, change tfvars and run on the terraform UI in plan mode, 
+I should see a rule violation if I'm trying to set a region outside the policy (eu-west-1)
+
+
+
+## IAM users / groups / roles
+
+is is possible to create an AWS iam user that can only access a specific region ?
+I've created the user + attached it to a policy containing the above as an inline policy. To test, how do I add permissions to (for example) create a S3 bucket ?
+can we expand on the permissions. I want to allow this account add VPC, subnet components , s3 bucket, ec2 instance and rds database, but as before restricted to eu-west-1.

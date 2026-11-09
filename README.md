@@ -43,14 +43,23 @@ I stood up the environment using Terraform apply and validatd some of the releva
 - Created a run (plan only) which generated mock/test data to download. Placed this in the terraform folder. At this stage the .sentinel files  were not included in the repo.
 - Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
   - With the mock data these pass. 
-  - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected. 
-  - I uploaded the .sentinel files 
+  - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected when executed via CLI 
 
-I validated , planned and built the environment once to confirm it was what I intended. 
-I used terraform plan -out=sentinelTF.tfplan to create a binary test plan
-From there I was able to output the JSON content terraform show -json sentinelTF.tfplan > mock-data.json to generate mock data. 
+   
+## Generate 
+
+https://app.terraform.io/app/atuIAC-terraform-mmgriffi-tf-org/workspaces
 
 
+- Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
+
+|Policy Name|Details|Passing Image|Failing Image|Notes
+|----|----|----|----|----|
+|Sovergnity|limited to a single region "allowed_regions = ["eu-west-1"]"   |[Pass](/images/TerraformUI_Apply_Passed_Sovereignty.jpg)|[Fail](/images/TerraformUI_Apply_Failed_Sovereignty.jpg)|switch terrafrom.tfvars to aws_region = "us-east-1", commit changes to GitHub and re-trigger Terraform UI run|
+|Instance-type|uses array of instance types "allowed_types = ["t3.micro", "t3.small","t2.micro"]"||||
+
+
+see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)
 
 
 # Resources used.

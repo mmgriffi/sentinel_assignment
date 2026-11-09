@@ -1,0 +1,19 @@
+{
+  "mock": {
+    "tfplan/v2": {
+      "resource_changes": [
+        {
+          "address": "aws_instance.web",
+          "type": "aws_instance",
+          "provider_name": "registry.terraform.io/hashicorp/lidl",
+          "change": {
+            "actions": ["create"]
+          }
+        }
+      ]
+    }
+  },
+  "test": {
+    "main": false
+  }
+}

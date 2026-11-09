@@ -1,0 +1,49 @@
+================ Results for policy set: <empty policy set name> ===============
+
+Sentinel Result: false
+
+This result means that one or more Sentinel policies failed. More than likely,
+this was due to the discovery of violations by the main rule and other
+sub-rules. Please see the details of the policies executed below to find the
+violation(s), which is usually indicated by a rule with a false boolean value,
+or non-zero collection data.
+
+3 policies evaluated.
+
+## Policy 1: sovereignty (hard-mandatory)
+
+Result: false
+
+Print messages:
+
+Data Residency Violation: Sensitive AWS resources found outside approved regions ["eu-west-1"]
+  - Resource: aws_db_instance.mysql_db is deployed in: us-east-1
+  - Resource: aws_s3_bucket.db_backups is deployed in: us-east-1
+
+./sovereignty.sentinel:33:1 - Rule "main"
+  Description:
+    Main rule validation
+
+  Value:
+    false
+
+## Policy 2: allowed-providers (advisory)
+
+Result: true
+
+./allowed-providers.sentinel:10:1 - Rule "main"
+  Description:
+    Rule to validate the provider
+
+  Value:
+    true
+
+## Policy 3: instance_type (advisory)
+
+Result: true
+
+./instance_type.sentinel:20:1 - Rule "main"
+  Value:
+    true
+
+
