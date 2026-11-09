@@ -36,9 +36,9 @@ main = rule {
 
 # Print debugging information if violations occur
 if length(violating_resources) > 0 {
-    print("Data Residency Violation: Sensitive AWS resources found outside approved regions " + json.marshal(allowed_regions))
+    print("Data Residency Violation: Sensitive AWS resources found outside approved regions", json.marshal(allowed_regions))
     for violating_resources as addr, reg {
-        print("  - Resource: " + addr + " is deployed in: " + string(reg))
+        # Using string interpolation safely handles null or unexpected types
+        print("  - Resource: #{addr} is deployed in: #{reg}")
     }
 }
-
