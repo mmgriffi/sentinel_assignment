@@ -1,0 +1,48 @@
+id = "run-Zr72BURVjmQeFhTP"
+created_at = "2026-11-10T14:34:43.566Z"
+created_by = "gh-webhooks-atuIAC-terraform-mmgriffi-tf-org-7aXr0Gn0mX"
+message = "Merge pull request #6 from mmgriffi/infra/sentinel\n\nadded variables for ports, expanded ec2 instance , sentinel files to match."
+commit_sha = "327e5ff55d7747948926244f61581c565d52a1db"
+speculative = false
+is_destroy = false
+refresh = true
+refresh_only = false
+replace_addrs = null
+target_addrs = null
+project = {
+	"id":   "prj-o24ZxTczNRqg851K",
+	"name": "sentinel_test",
+}
+
+variables = {
+	"AWS_ACCESS_KEY_ID": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+	"AWS_SECRET_ACCESS_KEY": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+}
+
+organization = {
+	"name": "atuIAC-terraform-mmgriffi-tf-org",
+}
+
+workspace = {
+	"auto_apply":     false,
+	"created_at":     "2026-11-08T12:24:25.447Z",
+	"description":    null,
+	"execution_mode": "default",
+	"id":             "ws-jQcEggFbqmPN8uvx",
+	"name":           "Work_Sentinel_test",
+	"tag_bindings":   [],
+	"tags":           [],
+	"vcs_repo": {
+		"branch":             "",
+		"display_identifier": "mmgriffi/sentinel_assignment",
+		"identifier":         "mmgriffi/sentinel_assignment",
+		"ingress_submodules": false,
+	},
+	"working_directory": "terraform",
+}
