@@ -89,3 +89,17 @@ variable "db_password" {
     default     = "dbpassword"
     sensitive   = "true"
 }
+# SSH port
+#db_password
+variable "ssh_port" {
+    description = "ssh_port for inbound access"
+    type        = string
+    default     = "22"
+}
+# SQL port
+#db_password
+variable "sql_port" {
+    description = "SQL db port for inbound access"
+    type        = string
+    default     = "3306"
+}

@@ -13,6 +13,8 @@ public_subnet_cidr   = "10.0.1.0/24"
 private_subnet-a_cidr  = "10.0.2.0/24"
 private_subnet-b_cidr   = "10.0.3.0/24"
 
+ssh_port = "22"
+sql_port = "3306"
 # update to match your current IP address
 admin_ip  = "86.45.159.23/32"
 
