@@ -1,0 +1,1086 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"references": [
+					"var.aws_region",
+				],
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "~> 6.69",
+	},
+}
+
+resources = {
+	"aws_db_instance.mysql_db": {
+		"address": "aws_db_instance.mysql_db",
+		"config": {
+			"allocated_storage": {
+				"constant_value": 20,
+			},
+			"availability_zone": {
+				"references": [
+					"aws_subnet.privateA.availability_zone",
+					"aws_subnet.privateA",
+				],
+			},
+			"backup_retention_period": {
+				"constant_value": 0,
+			},
+			"db_subnet_group_name": {
+				"references": [
+					"aws_db_subnet_group.rds_subnet_group.name",
+					"aws_db_subnet_group.rds_subnet_group",
+				],
+			},
+			"engine": {
+				"constant_value": "mysql",
+			},
+			"engine_version": {
+				"constant_value": "8.0",
+			},
+			"identifier": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"instance_class": {
+				"constant_value": "db.t3.micro",
+			},
+			"multi_az": {
+				"constant_value": false,
+			},
+			"password": {
+				"references": [
+					"var.db_password",
+				],
+			},
+			"skip_final_snapshot": {
+				"constant_value": true,
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"username": {
+				"references": [
+					"var.db_username",
+				],
+			},
+			"vpc_security_group_ids": {
+				"references": [
+					"aws_security_group.db_server.id",
+					"aws_security_group.db_server",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "mysql_db",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_db_instance",
+	},
+	"aws_db_subnet_group.rds_subnet_group": {
+		"address": "aws_db_subnet_group.rds_subnet_group",
+		"config": {
+			"description": {
+				"constant_value": "Database subnet group containing private subnets",
+			},
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"subnet_ids": {
+				"references": [
+					"aws_subnet.privateA.id",
+					"aws_subnet.privateA",
+					"aws_subnet.privateB.id",
+					"aws_subnet.privateB",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "rds_subnet_group",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_db_subnet_group",
+	},
+	"aws_iam_instance_profile.ec2_profile": {
+		"address": "aws_iam_instance_profile.ec2_profile",
+		"config": {
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"role": {
+				"references": [
+					"aws_iam_role.ec2_s3_role.name",
+					"aws_iam_role.ec2_s3_role",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "ec2_profile",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_iam_instance_profile",
+	},
+	"aws_iam_policy.s3_upload_policy": {
+		"address": "aws_iam_policy.s3_upload_policy",
+		"config": {
+			"description": {
+				"constant_value": "Allows EC2 instance to upload database backups to S3",
+			},
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"policy": {
+				"references": [
+					"aws_s3_bucket.db_backups.arn",
+					"aws_s3_bucket.db_backups",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "s3_upload_policy",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_iam_policy",
+	},
+	"aws_iam_role.ec2_s3_role": {
+		"address": "aws_iam_role.ec2_s3_role",
+		"config": {
+			"assume_role_policy": {
+				"constant_value": null,
+			},
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "ec2_s3_role",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_iam_role",
+	},
+	"aws_iam_role_policy_attachment.s3_attach": {
+		"address": "aws_iam_role_policy_attachment.s3_attach",
+		"config": {
+			"policy_arn": {
+				"references": [
+					"aws_iam_policy.s3_upload_policy.arn",
+					"aws_iam_policy.s3_upload_policy",
+				],
+			},
+			"role": {
+				"references": [
+					"aws_iam_role.ec2_s3_role.name",
+					"aws_iam_role.ec2_s3_role",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "s3_attach",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_iam_role_policy_attachment",
+	},
+	"aws_instance.ec2_server": {
+		"address": "aws_instance.ec2_server",
+		"config": {
+			"ami": {
+				"references": [
+					"data.aws_ssm_parameter.ubuntu.value",
+					"data.aws_ssm_parameter.ubuntu",
+				],
+			},
+			"iam_instance_profile": {
+				"references": [
+					"aws_iam_instance_profile.ec2_profile.name",
+					"aws_iam_instance_profile.ec2_profile",
+				],
+			},
+			"instance_type": {
+				"references": [
+					"var.instance_type",
+				],
+			},
+			"key_name": {
+				"references": [
+					"var.keypair",
+				],
+			},
+			"metadata_options": [
+				{
+					"http_endpoint": {
+						"constant_value": "enabled",
+					},
+					"http_put_response_hop_limit": {
+						"constant_value": 1,
+					},
+					"http_tokens": {
+						"constant_value": "required",
+					},
+				},
+			],
+			"root_block_device": [
+				{
+					"encrypted": {
+						"constant_value": true,
+					},
+					"volume_type": {
+						"constant_value": "gp3",
+					},
+				},
+			],
+			"subnet_id": {
+				"references": [
+					"aws_subnet.public.id",
+					"aws_subnet.public",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"user_data": {
+				"constant_value": "#!/bin/bash\nsudo apt-get update\nsudo apt-get install -y mariadb-client-core awscli\ncurl -o /home/ubuntu/global-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem\n",
+			},
+			"vpc_security_group_ids": {
+				"references": [
+					"aws_security_group.ec2_server.id",
+					"aws_security_group.ec2_server",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "ec2_server",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_instance",
+	},
+	"aws_internet_gateway.main": {
+		"address": "aws_internet_gateway.main",
+		"config": {
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_internet_gateway",
+	},
+	"aws_route_table.private": {
+		"address": "aws_route_table.private",
+		"config": {
+			"route": {
+				"references": [
+					"aws_internet_gateway.main.id",
+					"aws_internet_gateway.main",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "private",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_route_table",
+	},
+	"aws_route_table.public": {
+		"address": "aws_route_table.public",
+		"config": {
+			"route": {
+				"references": [
+					"aws_internet_gateway.main.id",
+					"aws_internet_gateway.main",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "public",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_route_table",
+	},
+	"aws_route_table_association.privateA": {
+		"address": "aws_route_table_association.privateA",
+		"config": {
+			"route_table_id": {
+				"references": [
+					"aws_route_table.private.id",
+					"aws_route_table.private",
+				],
+			},
+			"subnet_id": {
+				"references": [
+					"aws_subnet.privateA.id",
+					"aws_subnet.privateA",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "privateA",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_route_table_association",
+	},
+	"aws_route_table_association.privateB": {
+		"address": "aws_route_table_association.privateB",
+		"config": {
+			"route_table_id": {
+				"references": [
+					"aws_route_table.private.id",
+					"aws_route_table.private",
+				],
+			},
+			"subnet_id": {
+				"references": [
+					"aws_subnet.privateB.id",
+					"aws_subnet.privateB",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "privateB",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_route_table_association",
+	},
+	"aws_route_table_association.public": {
+		"address": "aws_route_table_association.public",
+		"config": {
+			"route_table_id": {
+				"references": [
+					"aws_route_table.public.id",
+					"aws_route_table.public",
+				],
+			},
+			"subnet_id": {
+				"references": [
+					"aws_subnet.public.id",
+					"aws_subnet.public",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "public",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_route_table_association",
+	},
+	"aws_s3_bucket.db_backups": {
+		"address": "aws_s3_bucket.db_backups",
+		"config": {
+			"bucket": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"force_destroy": {
+				"constant_value": false,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "db_backups",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_security_group.db_server": {
+		"address": "aws_security_group.db_server",
+		"config": {
+			"description": {
+				"constant_value": "Security group for database allowing access from EC2 only",
+			},
+			"egress": {
+				"constant_value": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow all outbound traffic",
+						"from_port":        0,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "-1",
+						"security_groups":  null,
+						"self":             null,
+						"to_port":          0,
+					},
+				],
+			},
+			"ingress": {
+				"references": [
+					"var.sql_port",
+					"aws_security_group.ec2_server.id",
+					"aws_security_group.ec2_server",
+					"var.sql_port",
+				],
+			},
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "db_server",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_security_group.ec2_server": {
+		"address": "aws_security_group.ec2_server",
+		"config": {
+			"description": {
+				"constant_value": "Security group allowing SSH",
+			},
+			"egress": {
+				"constant_value": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow all outbound traffic",
+						"from_port":        0,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "-1",
+						"security_groups":  null,
+						"self":             null,
+						"to_port":          0,
+					},
+				],
+			},
+			"ingress": {
+				"references": [
+					"var.ssh_port",
+					"var.ssh_port",
+					"var.admin_ip",
+				],
+			},
+			"name": {
+				"references": [
+					"var.project_name",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "ec2_server",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"aws_subnet.privateA": {
+		"address": "aws_subnet.privateA",
+		"config": {
+			"availability_zone": {
+				"references": [
+					"var.aws_region",
+				],
+			},
+			"cidr_block": {
+				"references": [
+					"var.private_subnet-a_cidr",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "privateA",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_subnet",
+	},
+	"aws_subnet.privateB": {
+		"address": "aws_subnet.privateB",
+		"config": {
+			"availability_zone": {
+				"references": [
+					"var.aws_region",
+				],
+			},
+			"cidr_block": {
+				"references": [
+					"var.private_subnet-b_cidr",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "privateB",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_subnet",
+	},
+	"aws_subnet.public": {
+		"address": "aws_subnet.public",
+		"config": {
+			"availability_zone": {
+				"references": [
+					"var.aws_region",
+				],
+			},
+			"cidr_block": {
+				"references": [
+					"var.public_subnet_cidr",
+				],
+			},
+			"map_public_ip_on_launch": {
+				"constant_value": true,
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+				],
+			},
+			"vpc_id": {
+				"references": [
+					"aws_vpc.main.id",
+					"aws_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "public",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_subnet",
+	},
+	"aws_vpc.main": {
+		"address": "aws_vpc.main",
+		"config": {
+			"cidr_block": {
+				"references": [
+					"var.vpc_cidr",
+				],
+			},
+			"enable_dns_hostnames": {
+				"constant_value": true,
+			},
+			"enable_dns_support": {
+				"constant_value": true,
+			},
+			"tags": {
+				"references": [
+					"var.project_name",
+					"var.environment",
+					"var.project_name",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "main",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_vpc",
+	},
+	"data.aws_ssm_parameter.ubuntu": {
+		"address": "data.aws_ssm_parameter.ubuntu",
+		"config": {
+			"name": {
+				"references": [
+					"var.ubuntu_ami",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "ubuntu",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_ssm_parameter",
+	},
+}
+
+provisioners = {}
+
+variables = {
+	"admin_ip": {
+		"default":        "86.45.159.23/32",
+		"description":    "IP address of the user laptop",
+		"module_address": "",
+		"name":           "admin_ip",
+	},
+	"aws_region": {
+		"default":        "eu-west-1",
+		"description":    "AWS region where resources will be created",
+		"module_address": "",
+		"name":           "aws_region",
+	},
+	"db_password": {
+		"default":        "dbpassword",
+		"description":    "Master DB password",
+		"module_address": "",
+		"name":           "db_password",
+	},
+	"db_username": {
+		"default":        "dbadmin",
+		"description":    "Master DB username",
+		"module_address": "",
+		"name":           "db_username",
+	},
+	"environment": {
+		"default":        "dev",
+		"description":    "Environment name (dev, staging, prod)",
+		"module_address": "",
+		"name":           "environment",
+	},
+	"instance_type": {
+		"default":        "t2.micro",
+		"description":    "EC2 instance type",
+		"module_address": "",
+		"name":           "instance_type",
+	},
+	"keypair": {
+		"default":        "3tierassignment",
+		"description":    "Name of the AWS key pair",
+		"module_address": "",
+		"name":           "keypair",
+	},
+	"private_subnet-a_cidr": {
+		"default":        "10.0.2.0/24",
+		"description":    "CIDR block for private subnet",
+		"module_address": "",
+		"name":           "private_subnet-a_cidr",
+	},
+	"private_subnet-b_cidr": {
+		"default":        "10.0.3.0/24",
+		"description":    "CIDR block for private subnet",
+		"module_address": "",
+		"name":           "private_subnet-b_cidr",
+	},
+	"project_name": {
+		"default":        "sentinel-aws-test",
+		"description":    "Name of the project, used for resource naming",
+		"module_address": "",
+		"name":           "project_name",
+	},
+	"public_subnet_cidr": {
+		"default":        "10.0.1.0/24",
+		"description":    "CIDR block for public subnet",
+		"module_address": "",
+		"name":           "public_subnet_cidr",
+	},
+	"sql_port": {
+		"default":        "3306",
+		"description":    "SQL db port for inbound access",
+		"module_address": "",
+		"name":           "sql_port",
+	},
+	"ssh_port": {
+		"default":        "22",
+		"description":    "ssh_port for inbound access",
+		"module_address": "",
+		"name":           "ssh_port",
+	},
+	"ubuntu_ami": {
+		"default":        "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+		"description":    "full path of the AMI",
+		"module_address": "",
+		"name":           "ubuntu_ami",
+	},
+	"vpc_cidr": {
+		"default":        "10.0.0.0/16",
+		"description":    "CIDR block for VPC",
+		"module_address": "",
+		"name":           "vpc_cidr",
+	},
+}
+
+outputs = {
+	"backup_s3_bucket_name": {
+		"depends_on":     [],
+		"description":    "The unique name of the S3 bucket created for database backups",
+		"module_address": "",
+		"name":           "backup_s3_bucket_name",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_s3_bucket.db_backups.id",
+				"aws_s3_bucket.db_backups",
+			],
+		},
+	},
+	"backup_s3_uri": {
+		"depends_on":     [],
+		"description":    "The target S3 URI path to copy backup files directly to",
+		"module_address": "",
+		"name":           "backup_s3_uri",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_s3_bucket.db_backups.id",
+				"aws_s3_bucket.db_backups",
+			],
+		},
+	},
+	"db_endpoint": {
+		"depends_on":     [],
+		"description":    "The connection endpoint for the MySQL RDS database",
+		"module_address": "",
+		"name":           "db_endpoint",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_db_instance.mysql_db.endpoint",
+				"aws_db_instance.mysql_db",
+			],
+		},
+	},
+	"instance_id": {
+		"depends_on":     [],
+		"description":    "ID of the EC2 instance",
+		"module_address": "",
+		"name":           "instance_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_instance.ec2_server.id",
+				"aws_instance.ec2_server",
+			],
+		},
+	},
+	"instance_private_ip": {
+		"depends_on":     [],
+		"description":    "Private IP address of the EC2 instance",
+		"module_address": "",
+		"name":           "instance_private_ip",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_instance.ec2_server.private_ip",
+				"aws_instance.ec2_server",
+			],
+		},
+	},
+	"instance_public_dns": {
+		"depends_on":     [],
+		"description":    "Public DNS name of the EC2 instance",
+		"module_address": "",
+		"name":           "instance_public_dns",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_instance.ec2_server.public_dns",
+				"aws_instance.ec2_server",
+			],
+		},
+	},
+	"instance_public_ip": {
+		"depends_on":     [],
+		"description":    "Public IP address of the EC2 instance",
+		"module_address": "",
+		"name":           "instance_public_ip",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_instance.ec2_server.public_ip",
+				"aws_instance.ec2_server",
+			],
+		},
+	},
+	"internet_gateway_id": {
+		"depends_on":     [],
+		"description":    "ID of the Internet Gateway",
+		"module_address": "",
+		"name":           "internet_gateway_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_internet_gateway.main.id",
+				"aws_internet_gateway.main",
+			],
+		},
+	},
+	"private_subnet-a_id": {
+		"depends_on":     [],
+		"description":    "ID of the private subnet A",
+		"module_address": "",
+		"name":           "private_subnet-a_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_subnet.privateB.id",
+				"aws_subnet.privateB",
+			],
+		},
+	},
+	"private_subnet_id": {
+		"depends_on":     [],
+		"description":    "ID of the private subnet B",
+		"module_address": "",
+		"name":           "private_subnet_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_subnet.privateA.id",
+				"aws_subnet.privateA",
+			],
+		},
+	},
+	"public_subnet_id": {
+		"depends_on":     [],
+		"description":    "ID of the public subnet",
+		"module_address": "",
+		"name":           "public_subnet_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_subnet.public.id",
+				"aws_subnet.public",
+			],
+		},
+	},
+	"security_group_id": {
+		"depends_on":     [],
+		"description":    "ID of the security group",
+		"module_address": "",
+		"name":           "security_group_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_security_group.ec2_server.id",
+				"aws_security_group.ec2_server",
+			],
+		},
+	},
+	"ssh_connection_command": {
+		"depends_on":     [],
+		"description":    "Command to SSH into the EC2 instance",
+		"module_address": "",
+		"name":           "ssh_connection_command",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_instance.ec2_server.public_ip",
+				"aws_instance.ec2_server",
+			],
+		},
+	},
+	"vpc_cidr_block": {
+		"depends_on":     [],
+		"description":    "CIDR block of the VPC",
+		"module_address": "",
+		"name":           "vpc_cidr_block",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_vpc.main.cidr_block",
+				"aws_vpc.main",
+			],
+		},
+	},
+	"vpc_id": {
+		"depends_on":     [],
+		"description":    "ID of the VPC",
+		"module_address": "",
+		"name":           "vpc_id",
+		"sensitive":      false,
+		"value": {
+			"references": [
+				"aws_vpc.main.id",
+				"aws_vpc.main",
+			],
+		},
+	},
+}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

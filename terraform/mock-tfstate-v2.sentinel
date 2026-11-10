@@ -1,0 +1,35 @@
+terraform_version = "1.17.1"
+
+outputs = {
+	"vpc_cidr_block": {
+		"name":      "vpc_cidr_block",
+		"sensitive": false,
+		"value":     "10.0.0.0/16",
+	},
+}
+
+resources = {
+	"aws_ssm_parameter.ubuntu": {
+		"address":        "aws_ssm_parameter.ubuntu",
+		"depends_on":     [],
+		"deposed_key":    "",
+		"index":          null,
+		"mode":           "data",
+		"module_address": "",
+		"name":           "ubuntu",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"tainted":        false,
+		"type":           "aws_ssm_parameter",
+		"values": {
+			"arn":             "arn:aws:ssm:eu-west-1::parameter/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+			"id":              "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+			"insecure_value":  "ami-09aa01115a0a7faab",
+			"name":            "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+			"region":          "eu-west-1",
+			"type":            "String",
+			"value":           "ami-09aa01115a0a7faab",
+			"version":         21,
+			"with_decryption": true,
+		},
+	},
+}

@@ -1,0 +1,3486 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {},
+		"path": [],
+		"resources": {
+			"aws_db_instance": {
+				"mysql_db": {
+					0: {
+						"applied": {
+							"allocated_storage":               20,
+							"allow_major_version_upgrade":     null,
+							"apply_immediately":               false,
+							"auto_minor_version_upgrade":      true,
+							"availability_zone":               "eu-west-1a",
+							"backup_retention_period":         0,
+							"blue_green_update":               [],
+							"copy_tags_to_snapshot":           false,
+							"custom_iam_instance_profile":     null,
+							"customer_owned_ip_enabled":       null,
+							"db_subnet_group_name":            "sentinel-aws-test-rds-subnet-group",
+							"dedicated_log_volume":            false,
+							"delete_automated_backups":        true,
+							"deletion_protection":             null,
+							"domain":                          null,
+							"domain_auth_secret_arn":          null,
+							"domain_dns_ips":                  null,
+							"domain_iam_role_name":            null,
+							"domain_ou":                       null,
+							"enabled_cloudwatch_logs_exports": null,
+							"engine":                              "mysql",
+							"engine_version":                      "8.0",
+							"final_snapshot_identifier":           null,
+							"iam_database_authentication_enabled": null,
+							"identifier":                          "sentinel-aws-test-mysql",
+							"instance_class":                      "db.t3.micro",
+							"manage_master_user_password":         null,
+							"max_allocated_storage":               null,
+							"monitoring_interval":                 0,
+							"multi_az":                            false,
+							"password":                            "REDACTED_SENSITIVE",
+							"password_wo":                         "REDACTED_SENSITIVE",
+							"password_wo_version":                 null,
+							"performance_insights_enabled":        false,
+							"publicly_accessible":                 false,
+							"region":                              "eu-west-1",
+							"replicate_source_db":                 null,
+							"restore_to_point_in_time":            [],
+							"s3_import":                           [],
+							"skip_final_snapshot":                 true,
+							"storage_encrypted":                   null,
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-mysql-db",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-mysql-db",
+							},
+							"timeouts":                 null,
+							"upgrade_storage_config":   null,
+							"username":                 "dbadmin",
+							"warning_event_categories": null,
+						},
+						"destroy": false,
+						"diff": {
+							"address": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"allocated_storage": {
+								"computed": false,
+								"new":      "20",
+								"old":      "",
+							},
+							"allow_major_version_upgrade": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"apply_immediately": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"auto_minor_version_upgrade": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"availability_zone": {
+								"computed": false,
+								"new":      "eu-west-1a",
+								"old":      "",
+							},
+							"backup_retention_period": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"backup_target": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"backup_window": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"blue_green_update.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ca_cert_identifier": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"character_set_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"copy_tags_to_snapshot": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"custom_iam_instance_profile": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"customer_owned_ip_enabled": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"database_insights_mode": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"db_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"db_subnet_group_name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-rds-subnet-group",
+								"old":      "",
+							},
+							"dedicated_log_volume": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"delete_automated_backups": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"deletion_protection": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"domain": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"domain_auth_secret_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"domain_dns_ips": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"domain_fqdn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"domain_iam_role_name": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"domain_ou": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enabled_cloudwatch_logs_exports": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"endpoint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"engine": {
+								"computed": false,
+								"new":      "mysql",
+								"old":      "",
+							},
+							"engine_lifecycle_support": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"engine_version": {
+								"computed": false,
+								"new":      "8.0",
+								"old":      "",
+							},
+							"engine_version_actual": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"final_snapshot_identifier": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"hosted_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"iam_database_authentication_enabled": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"identifier": {
+								"computed": false,
+								"new":      "sentinel-aws-test-mysql",
+								"old":      "",
+							},
+							"identifier_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_class": {
+								"computed": false,
+								"new":      "db.t3.micro",
+								"old":      "",
+							},
+							"iops": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"kms_key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"latest_restorable_time": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"license_model": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"listener_endpoint.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"maintenance_window": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"manage_master_user_password": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"master_user_secret.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"master_user_secret_kms_key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"max_allocated_storage": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"monitoring_interval": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"monitoring_role_arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"multi_az": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"multi_tenant": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"nchar_character_set_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"network_type": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"option_group_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"parameter_group_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"password": {
+								"computed": false,
+								"new":      "REDACTED_SENSITIVE",
+								"old":      "",
+							},
+							"password_wo": {
+								"computed": false,
+								"new":      "REDACTED_SENSITIVE",
+								"old":      "",
+							},
+							"password_wo_version": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"performance_insights_enabled": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"performance_insights_kms_key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"performance_insights_retention_period": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"port": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"publicly_accessible": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"replica_mode": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"replicas.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"replicate_source_db": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"resource_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"restore_to_point_in_time.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"s3_import.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"skip_final_snapshot": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"snapshot_identifier": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"status": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"storage_encrypted": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"storage_throughput": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"storage_type": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-mysql-db",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-mysql-db",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"timezone": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"upgrade_rollout_order": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"upgrade_storage_config": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"username": {
+								"computed": false,
+								"new":      "dbadmin",
+								"old":      "",
+							},
+							"vpc_security_group_ids.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"warning_event_categories": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_db_subnet_group": {
+				"rds_subnet_group": {
+					0: {
+						"applied": {
+							"description": "Database subnet group containing private subnets",
+							"name":        "sentinel-aws-test-rds-subnet-group",
+							"region":      "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-rds-subnet-group",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-rds-subnet-group",
+							},
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "Database subnet group containing private subnets",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-rds-subnet-group",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"subnet_ids.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"supported_network_types.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-rds-subnet-group",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-rds-subnet-group",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_iam_instance_profile": {
+				"ec2_profile": {
+					0: {
+						"applied": {
+							"name": "sentinel-aws-test-ec2-instance-profile",
+							"path": "/",
+							"role": "sentinel-aws-test-ec2-s3-role",
+							"tags": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"create_date": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-instance-profile",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"path": {
+								"computed": false,
+								"new":      "/",
+								"old":      "",
+							},
+							"role": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-s3-role",
+								"old":      "",
+							},
+							"tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"unique_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_iam_policy": {
+				"s3_upload_policy": {
+					0: {
+						"applied": {
+							"delay_after_policy_creation_in_ms": null,
+							"description":                       "Allows EC2 instance to upload database backups to S3",
+							"name":                              "sentinel-aws-test-s3-upload-policy",
+							"path":                              "/",
+							"tags":                              null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"attachment_count": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"delay_after_policy_creation_in_ms": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "Allows EC2 instance to upload database backups to S3",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-s3-upload-policy",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"path": {
+								"computed": false,
+								"new":      "/",
+								"old":      "",
+							},
+							"policy": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"policy_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_iam_role": {
+				"ec2_s3_role": {
+					0: {
+						"applied": {
+							"assume_role_policy":    "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+							"description":           null,
+							"force_detach_policies": false,
+							"max_session_duration":  3600,
+							"name":                  "sentinel-aws-test-ec2-s3-role",
+							"path":                  "/",
+							"permissions_boundary":  null,
+							"tags":                  null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"assume_role_policy": {
+								"computed": false,
+								"new":      "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+								"old":      "",
+							},
+							"create_date": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"force_detach_policies": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"inline_policy.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"managed_policy_arns.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"max_session_duration": {
+								"computed": false,
+								"new":      "3600",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-s3-role",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"path": {
+								"computed": false,
+								"new":      "/",
+								"old":      "",
+							},
+							"permissions_boundary": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"unique_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_iam_role_policy_attachment": {
+				"s3_attach": {
+					0: {
+						"applied": {
+							"role": "sentinel-aws-test-ec2-s3-role",
+						},
+						"destroy": false,
+						"diff": {
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"policy_arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"role": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-s3-role",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_instance": {
+				"ec2_server": {
+					0: {
+						"applied": {
+							"ami": "REDACTED_SENSITIVE",
+							"credit_specification": [],
+							"force_destroy":        false,
+							"get_password_data":    false,
+							"hibernation":          null,
+							"iam_instance_profile": "sentinel-aws-test-ec2-instance-profile",
+							"instance_type":        "t2.micro",
+							"key_name":             "3tierassignment",
+							"launch_template":      [],
+							"metadata_options": [
+								{
+									"http_endpoint":               "enabled",
+									"http_protocol_ipv6":          "disabled",
+									"http_put_response_hop_limit": 1,
+									"http_tokens":                 "required",
+								},
+							],
+							"region": "eu-west-1",
+							"root_block_device": [
+								{
+									"delete_on_termination": true,
+									"encrypted":             true,
+									"tags":                  null,
+									"volume_type":           "gp3",
+								},
+							],
+							"source_dest_check": true,
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-ec2-server",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-ec2-server",
+							},
+							"timeouts":                    null,
+							"user_data":                   "#!/bin/bash\nsudo apt-get update\nsudo apt-get install -y mariadb-client-core awscli\ncurl -o /home/ubuntu/global-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem\n",
+							"user_data_replace_on_change": false,
+							"volume_tags":                 null,
+						},
+						"destroy": false,
+						"diff": {
+							"ami": {
+								"computed": false,
+								"new":      "REDACTED_SENSITIVE",
+								"old":      "",
+							},
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"associate_public_ip_address": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"availability_zone": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"capacity_reservation_specification.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cpu_options.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"credit_specification.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"disable_api_stop": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"disable_api_termination": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ebs_block_device.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ebs_optimized": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_primary_ipv6": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"enclave_options.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ephemeral_block_device.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"force_destroy": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"get_password_data": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"hibernation": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"host_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"host_resource_group_arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"iam_instance_profile": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-instance-profile",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_initiated_shutdown_behavior": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_lifecycle": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_market_options.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_state": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_type": {
+								"computed": false,
+								"new":      "t2.micro",
+								"old":      "",
+							},
+							"ipv6_address_count": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_addresses.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"key_name": {
+								"computed": false,
+								"new":      "3tierassignment",
+								"old":      "",
+							},
+							"launch_template.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"maintenance_options.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"metadata_options.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"metadata_options.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"metadata_options.0.http_endpoint": {
+								"computed": false,
+								"new":      "enabled",
+								"old":      "",
+							},
+							"metadata_options.0.http_protocol_ipv6": {
+								"computed": false,
+								"new":      "disabled",
+								"old":      "",
+							},
+							"metadata_options.0.http_put_response_hop_limit": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"metadata_options.0.http_tokens": {
+								"computed": false,
+								"new":      "required",
+								"old":      "",
+							},
+							"metadata_options.0.instance_metadata_tags": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"monitoring": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"network_interface.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"outpost_arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"password_data": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"placement_group": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"placement_group_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"placement_partition_number": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"primary_network_interface.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"primary_network_interface_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_dns": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_dns_name_options.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_ip": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"public_dns": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"public_ip": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"root_block_device.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"root_block_device.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.delete_on_termination": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"root_block_device.0.device_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.encrypted": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"root_block_device.0.iops": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.kms_key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.tags_all": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.throughput": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.volume_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.volume_size": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"root_block_device.0.volume_type": {
+								"computed": false,
+								"new":      "gp3",
+								"old":      "",
+							},
+							"secondary_network_interface.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"secondary_private_ips.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"security_groups.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"source_dest_check": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"spot_instance_request_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"subnet_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-server",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-server",
+								"old":      "",
+							},
+							"tenancy": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"user_data": {
+								"computed": false,
+								"new":      "#!/bin/bash\nsudo apt-get update\nsudo apt-get install -y mariadb-client-core awscli\ncurl -o /home/ubuntu/global-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem\n",
+								"old":      "",
+							},
+							"user_data_base64": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"user_data_replace_on_change": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"volume_tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_security_group_ids.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_internet_gateway": {
+				"main": {
+					0: {
+						"applied": {
+							"region": "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-igw",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-igw",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-igw",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-igw",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_route_table": {
+				"private": {
+					0: {
+						"applied": {
+							"region": "eu-west-1",
+							"route": [
+								{
+									"carrier_gateway_id":         "",
+									"cidr_block":                 "0.0.0.0/0",
+									"core_network_arn":           "",
+									"destination_prefix_list_id": "",
+									"egress_only_gateway_id":     "",
+									"ipv6_cidr_block":            "",
+									"local_gateway_id":           "",
+									"nat_gateway_id":             "",
+									"network_interface_id":       "",
+									"odb_network_arn":            "",
+									"transit_gateway_id":         "",
+									"vpc_endpoint_id":            "",
+									"vpc_peering_connection_id":  "",
+								},
+							],
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-rt",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-rt",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"propagating_vgws.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"route.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"route.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.carrier_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.cidr_block": {
+								"computed": false,
+								"new":      "0.0.0.0/0",
+								"old":      "",
+							},
+							"route.0.core_network_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.destination_prefix_list_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.egress_only_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.gateway_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.ipv6_cidr_block": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.local_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.nat_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.network_interface_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.odb_network_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.transit_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.vpc_endpoint_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.vpc_peering_connection_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-rt",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-rt",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"public": {
+					0: {
+						"applied": {
+							"region": "eu-west-1",
+							"route": [
+								{
+									"carrier_gateway_id":         "",
+									"cidr_block":                 "0.0.0.0/0",
+									"core_network_arn":           "",
+									"destination_prefix_list_id": "",
+									"egress_only_gateway_id":     "",
+									"ipv6_cidr_block":            "",
+									"local_gateway_id":           "",
+									"nat_gateway_id":             "",
+									"network_interface_id":       "",
+									"odb_network_arn":            "",
+									"transit_gateway_id":         "",
+									"vpc_endpoint_id":            "",
+									"vpc_peering_connection_id":  "",
+								},
+							],
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-public-rt",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-public-rt",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"propagating_vgws.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"route.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"route.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.carrier_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.cidr_block": {
+								"computed": false,
+								"new":      "0.0.0.0/0",
+								"old":      "",
+							},
+							"route.0.core_network_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.destination_prefix_list_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.egress_only_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.gateway_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.ipv6_cidr_block": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.local_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.nat_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.network_interface_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.odb_network_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.transit_gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.vpc_endpoint_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"route.0.vpc_peering_connection_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-public-rt",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-public-rt",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_route_table_association": {
+				"privateA": {
+					0: {
+						"applied": {
+							"gateway_id": null,
+							"region":     "eu-west-1",
+							"timeouts":   null,
+						},
+						"destroy": false,
+						"diff": {
+							"gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"route_table_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"subnet_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"privateB": {
+					0: {
+						"applied": {
+							"gateway_id": null,
+							"region":     "eu-west-1",
+							"timeouts":   null,
+						},
+						"destroy": false,
+						"diff": {
+							"gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"route_table_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"subnet_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"public": {
+					0: {
+						"applied": {
+							"gateway_id": null,
+							"region":     "eu-west-1",
+							"timeouts":   null,
+						},
+						"destroy": false,
+						"diff": {
+							"gateway_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"route_table_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"subnet_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_s3_bucket": {
+				"db_backups": {
+					0: {
+						"applied": {
+							"bucket":        "sentinel-aws-test-db-backups-assignment",
+							"force_destroy": false,
+							"region":        "eu-west-1",
+							"tags":          null,
+							"timeouts":      null,
+						},
+						"destroy": false,
+						"diff": {
+							"acceleration_status": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"acl": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket": {
+								"computed": false,
+								"new":      "sentinel-aws-test-db-backups-assignment",
+								"old":      "",
+							},
+							"bucket_domain_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_namespace": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_region": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_regional_domain_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cors_rule.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"force_destroy": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"grant.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"hosted_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"lifecycle_rule.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"logging.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"object_lock_configuration.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"object_lock_enabled": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"policy": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"replication_configuration.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"request_payer": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"versioning.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website_domain": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website_endpoint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_security_group": {
+				"db_server": {
+					0: {
+						"applied": {
+							"description": "Security group for database allowing access from EC2 only",
+							"egress": [
+								{
+									"cidr_blocks": [
+										"0.0.0.0/0",
+									],
+									"description":      "Allow all outbound traffic",
+									"from_port":        0,
+									"ipv6_cidr_blocks": [],
+									"prefix_list_ids":  [],
+									"protocol":         "-1",
+									"security_groups":  [],
+									"self":             false,
+									"to_port":          0,
+								},
+							],
+							"ingress": [
+								{
+									"cidr_blocks":      [],
+									"description":      "Allow MySQL traffic from EC2 server",
+									"from_port":        3306,
+									"ipv6_cidr_blocks": [],
+									"prefix_list_ids":  [],
+									"protocol":         "tcp",
+									"self":             false,
+									"to_port":          3306,
+								},
+							],
+							"name":                   "sentinel-aws-test-db-sg",
+							"region":                 "eu-west-1",
+							"revoke_rules_on_delete": false,
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-db-sg",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-db-sg",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "Security group for database allowing access from EC2 only",
+								"old":      "",
+							},
+							"egress.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"egress.0.%": {
+								"computed": false,
+								"new":      "9",
+								"old":      "",
+							},
+							"egress.0.cidr_blocks.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"egress.0.cidr_blocks.0": {
+								"computed": false,
+								"new":      "0.0.0.0/0",
+								"old":      "",
+							},
+							"egress.0.description": {
+								"computed": false,
+								"new":      "Allow all outbound traffic",
+								"old":      "",
+							},
+							"egress.0.from_port": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.ipv6_cidr_blocks.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.prefix_list_ids.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.protocol": {
+								"computed": false,
+								"new":      "-1",
+								"old":      "",
+							},
+							"egress.0.security_groups.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.self": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"egress.0.to_port": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ingress.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"ingress.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ingress.0.cidr_blocks.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.description": {
+								"computed": false,
+								"new":      "Allow MySQL traffic from EC2 server",
+								"old":      "",
+							},
+							"ingress.0.from_port": {
+								"computed": false,
+								"new":      "3306",
+								"old":      "",
+							},
+							"ingress.0.ipv6_cidr_blocks.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.prefix_list_ids.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.protocol": {
+								"computed": false,
+								"new":      "tcp",
+								"old":      "",
+							},
+							"ingress.0.security_groups": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ingress.0.self": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"ingress.0.to_port": {
+								"computed": false,
+								"new":      "3306",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-db-sg",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"revoke_rules_on_delete": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-db-sg",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-db-sg",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"ec2_server": {
+					0: {
+						"applied": {
+							"description": "Security group allowing SSH",
+							"egress": [
+								{
+									"cidr_blocks": [
+										"0.0.0.0/0",
+									],
+									"description":      "Allow all outbound traffic",
+									"from_port":        0,
+									"ipv6_cidr_blocks": [],
+									"prefix_list_ids":  [],
+									"protocol":         "-1",
+									"security_groups":  [],
+									"self":             false,
+									"to_port":          0,
+								},
+							],
+							"ingress": [
+								{
+									"cidr_blocks": [
+										"86.45.159.23/32",
+									],
+									"description":      "SSH from anywhere",
+									"from_port":        22,
+									"ipv6_cidr_blocks": [],
+									"prefix_list_ids":  [],
+									"protocol":         "tcp",
+									"security_groups":  [],
+									"self":             false,
+									"to_port":          22,
+								},
+							],
+							"name":                   "sentinel-aws-test-ec2-sg",
+							"region":                 "eu-west-1",
+							"revoke_rules_on_delete": false,
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-ec2-sg",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-ec2-sg",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "Security group allowing SSH",
+								"old":      "",
+							},
+							"egress.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"egress.0.%": {
+								"computed": false,
+								"new":      "9",
+								"old":      "",
+							},
+							"egress.0.cidr_blocks.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"egress.0.cidr_blocks.0": {
+								"computed": false,
+								"new":      "0.0.0.0/0",
+								"old":      "",
+							},
+							"egress.0.description": {
+								"computed": false,
+								"new":      "Allow all outbound traffic",
+								"old":      "",
+							},
+							"egress.0.from_port": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.ipv6_cidr_blocks.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.prefix_list_ids.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.protocol": {
+								"computed": false,
+								"new":      "-1",
+								"old":      "",
+							},
+							"egress.0.security_groups.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"egress.0.self": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"egress.0.to_port": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ingress.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"ingress.0.%": {
+								"computed": false,
+								"new":      "9",
+								"old":      "",
+							},
+							"ingress.0.cidr_blocks.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"ingress.0.cidr_blocks.0": {
+								"computed": false,
+								"new":      "86.45.159.23/32",
+								"old":      "",
+							},
+							"ingress.0.description": {
+								"computed": false,
+								"new":      "SSH from anywhere",
+								"old":      "",
+							},
+							"ingress.0.from_port": {
+								"computed": false,
+								"new":      "22",
+								"old":      "",
+							},
+							"ingress.0.ipv6_cidr_blocks.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.prefix_list_ids.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.protocol": {
+								"computed": false,
+								"new":      "tcp",
+								"old":      "",
+							},
+							"ingress.0.security_groups.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"ingress.0.self": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"ingress.0.to_port": {
+								"computed": false,
+								"new":      "22",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-sg",
+								"old":      "",
+							},
+							"name_prefix": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"revoke_rules_on_delete": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-sg",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-ec2-sg",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_subnet": {
+				"privateA": {
+					0: {
+						"applied": {
+							"assign_ipv6_address_on_creation":                false,
+							"availability_zone":                              "eu-west-1a",
+							"cidr_block":                                     "10.0.2.0/24",
+							"customer_owned_ipv4_pool":                       null,
+							"enable_dns64":                                   false,
+							"enable_lni_at_device_index":                     null,
+							"enable_resource_name_dns_a_record_on_launch":    false,
+							"enable_resource_name_dns_aaaa_record_on_launch": false,
+							"ipv4_ipam_pool_id":                              null,
+							"ipv4_netmask_length":                            null,
+							"ipv6_ipam_pool_id":                              null,
+							"ipv6_native":                                    false,
+							"ipv6_netmask_length":                            null,
+							"map_customer_owned_ip_on_launch":                null,
+							"map_public_ip_on_launch":                        false,
+							"outpost_arn":                                    null,
+							"region":                                         "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-subnet-a",
+								"Type":        "Private",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-subnet-a",
+								"Type":        "Private",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"assign_ipv6_address_on_creation": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"availability_zone": {
+								"computed": false,
+								"new":      "eu-west-1a",
+								"old":      "",
+							},
+							"availability_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cidr_block": {
+								"computed": false,
+								"new":      "10.0.2.0/24",
+								"old":      "",
+							},
+							"customer_owned_ipv4_pool": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_dns64": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_lni_at_device_index": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_resource_name_dns_a_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_resource_name_dns_aaaa_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block_association_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_native": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"ipv6_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_customer_owned_ip_on_launch": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_public_ip_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"outpost_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_dns_hostname_type_on_launch": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-subnet-a",
+								"old":      "",
+							},
+							"tags.Type": {
+								"computed": false,
+								"new":      "Private",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-subnet-a",
+								"old":      "",
+							},
+							"tags_all.Type": {
+								"computed": false,
+								"new":      "Private",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"privateB": {
+					0: {
+						"applied": {
+							"assign_ipv6_address_on_creation":                false,
+							"availability_zone":                              "eu-west-1b",
+							"cidr_block":                                     "10.0.3.0/24",
+							"customer_owned_ipv4_pool":                       null,
+							"enable_dns64":                                   false,
+							"enable_lni_at_device_index":                     null,
+							"enable_resource_name_dns_a_record_on_launch":    false,
+							"enable_resource_name_dns_aaaa_record_on_launch": false,
+							"ipv4_ipam_pool_id":                              null,
+							"ipv4_netmask_length":                            null,
+							"ipv6_ipam_pool_id":                              null,
+							"ipv6_native":                                    false,
+							"ipv6_netmask_length":                            null,
+							"map_customer_owned_ip_on_launch":                null,
+							"map_public_ip_on_launch":                        false,
+							"outpost_arn":                                    null,
+							"region":                                         "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-subnet-b",
+								"Type":        "Private",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-private-subnet-b",
+								"Type":        "Private",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"assign_ipv6_address_on_creation": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"availability_zone": {
+								"computed": false,
+								"new":      "eu-west-1b",
+								"old":      "",
+							},
+							"availability_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cidr_block": {
+								"computed": false,
+								"new":      "10.0.3.0/24",
+								"old":      "",
+							},
+							"customer_owned_ipv4_pool": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_dns64": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_lni_at_device_index": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_resource_name_dns_a_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_resource_name_dns_aaaa_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block_association_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_native": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"ipv6_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_customer_owned_ip_on_launch": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_public_ip_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"outpost_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_dns_hostname_type_on_launch": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-subnet-b",
+								"old":      "",
+							},
+							"tags.Type": {
+								"computed": false,
+								"new":      "Private",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-private-subnet-b",
+								"old":      "",
+							},
+							"tags_all.Type": {
+								"computed": false,
+								"new":      "Private",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+				"public": {
+					0: {
+						"applied": {
+							"assign_ipv6_address_on_creation":                false,
+							"availability_zone":                              "eu-west-1a",
+							"cidr_block":                                     "10.0.1.0/24",
+							"customer_owned_ipv4_pool":                       null,
+							"enable_dns64":                                   false,
+							"enable_lni_at_device_index":                     null,
+							"enable_resource_name_dns_a_record_on_launch":    false,
+							"enable_resource_name_dns_aaaa_record_on_launch": false,
+							"ipv4_ipam_pool_id":                              null,
+							"ipv4_netmask_length":                            null,
+							"ipv6_ipam_pool_id":                              null,
+							"ipv6_native":                                    false,
+							"ipv6_netmask_length":                            null,
+							"map_customer_owned_ip_on_launch":                null,
+							"map_public_ip_on_launch":                        true,
+							"outpost_arn":                                    null,
+							"region":                                         "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-public-subnet",
+								"Type":        "Public",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-public-subnet",
+								"Type":        "Public",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"assign_ipv6_address_on_creation": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"availability_zone": {
+								"computed": false,
+								"new":      "eu-west-1a",
+								"old":      "",
+							},
+							"availability_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cidr_block": {
+								"computed": false,
+								"new":      "10.0.1.0/24",
+								"old":      "",
+							},
+							"customer_owned_ipv4_pool": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_dns64": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_lni_at_device_index": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_resource_name_dns_a_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_resource_name_dns_aaaa_record_on_launch": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block_association_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_native": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"ipv6_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_customer_owned_ip_on_launch": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"map_public_ip_on_launch": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"outpost_arn": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_dns_hostname_type_on_launch": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-public-subnet",
+								"old":      "",
+							},
+							"tags.Type": {
+								"computed": false,
+								"new":      "Public",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-public-subnet",
+								"old":      "",
+							},
+							"tags_all.Type": {
+								"computed": false,
+								"new":      "Public",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"vpc_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_vpc": {
+				"main": {
+					0: {
+						"applied": {
+							"assign_generated_ipv6_cidr_block": null,
+							"cidr_block":                       "10.0.0.0/16",
+							"enable_dns_hostnames":             true,
+							"enable_dns_support":               true,
+							"instance_tenancy":                 "default",
+							"ipv4_ipam_pool_id":                null,
+							"ipv4_netmask_length":              null,
+							"ipv6_ipam_pool_id":                null,
+							"ipv6_netmask_length":              null,
+							"region":                           "eu-west-1",
+							"tags": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-vpc",
+								"Project":     "sentinel-aws-test",
+							},
+							"tags_all": {
+								"Environment": "dev",
+								"Name":        "sentinel-aws-test-vpc",
+								"Project":     "sentinel-aws-test",
+							},
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"assign_generated_ipv6_cidr_block": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"cidr_block": {
+								"computed": false,
+								"new":      "10.0.0.0/16",
+								"old":      "",
+							},
+							"default_network_acl_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"default_route_table_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"default_security_group_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"dhcp_options_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_dns_hostnames": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"enable_dns_support": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"enable_network_address_usage_metrics": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"instance_tenancy": {
+								"computed": false,
+								"new":      "default",
+								"old":      "",
+							},
+							"ipv4_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv4_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_association_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_cidr_block_network_border_group": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_ipam_pool_id": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"ipv6_netmask_length": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"main_route_table_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"owner_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": false,
+								"new":      "eu-west-1",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-vpc",
+								"old":      "",
+							},
+							"tags.Project": {
+								"computed": false,
+								"new":      "sentinel-aws-test",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"tags_all.Environment": {
+								"computed": false,
+								"new":      "dev",
+								"old":      "",
+							},
+							"tags_all.Name": {
+								"computed": false,
+								"new":      "sentinel-aws-test-vpc",
+								"old":      "",
+							},
+							"tags_all.Project": {
+								"computed": false,
+								"new":      "sentinel-aws-test",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+		},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.17.1"
+
+variables = {
+	"admin_ip":              "86.45.159.23/32",
+	"aws_region":            "eu-west-1",
+	"db_password":           "REDACTED_SENSITIVE",
+	"db_username":           "dbadmin",
+	"environment":           "dev",
+	"instance_type":         "t2.micro",
+	"keypair":               "3tierassignment",
+	"private_subnet-a_cidr": "10.0.2.0/24",
+	"private_subnet-b_cidr": "10.0.3.0/24",
+	"project_name":          "sentinel-aws-test",
+	"public_subnet_cidr":    "10.0.1.0/24",
+	"sql_port":              "3306",
+	"ssh_port":              "22",
+	"ubuntu_ami":            "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+	"vpc_cidr":              "10.0.0.0/16",
+}
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources

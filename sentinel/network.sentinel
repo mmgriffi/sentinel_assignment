@@ -1,0 +1,100 @@
+import "tfplan/v2" as tfplan
+
+# Helper function to get resources of a specific type
+get_resources = func(type) {
+    resources = []
+    for tfplan.resource_changes as _, rc {
+        if rc.type is type and (rc.change.actions contains "create" or rc.change.actions contains "update") {
+            append(resources, rc)
+        }
+    }
+    return resources
+}
+
+# 1. Enforce no unbound SSH (Port 22)
+validate_ssh = func() {
+    violators = 0
+    sgs = get_resources("aws_security_group")
+    
+    for sgs as _, sg {
+        ingress_rules = sg.change.after.ingress else []
+        for ingress_rules as _, ingress_rule {
+            from_port = ingress_rule.from_port else 0
+            to_port = ingress_rule.to_port else 0
+            cidr_blocks = ingress_rule.cidr_blocks else []
+            
+            # Check if port 22 is exposed to the entire internet
+            if from_port <= 22 and to_port >= 22 {
+                if cidr_blocks contains "0.0.0.0/0" {
+                    print("Violation: Security Group " + sg.address + " allows SSH (port 22) from 0.0.0.0/0")
+                    violators += 1
+                }
+            }
+        }
+    }
+    return violators == 0
+}
+
+# 2. Ensure only public subnets route directly to the Internet Gateway
+validate_subnet_routing = func() {
+    violators = 0
+    route_tables = get_resources("aws_route_table")
+    associations = get_resources("aws_route_table_association")
+    
+    # Map out which route tables route to an IGW
+    igw_route_tables = {}
+    for route_tables as _, rt {
+        routes = rt.change.after.route else []
+        for routes as _, route {
+            if (route.cidr_block else "") == "0.0.0.0/0" and (route.gateway_id else "") matches "^aws_internet_gateway\\." {
+                igw_route_tables[rt.address] = true
+            }
+        }
+    }
+    
+    # Check associations against your naming/type convention
+    for associations as _, assoc {
+        rt_id = assoc.change.after.route_table_id else ""
+        if rt_id in igw_route_tables {
+            subnet_id = assoc.change.after.subnet_id else ""
+            # Enforce that if it connects to an IGW route table, it must be the explicit public subnet
+            if subnet_id not matches "aws_subnet\\.public" {
+                print("Violation: Non-public subnet associated with an Internet Gateway route table via " + assoc.address)
+                violators += 1
+            }
+        }
+    }
+    return violators == 0
+}
+
+# 3. Ensure DB security groups ONLY allow port 3306 inbound
+validate_db_ports = func() {
+    violators = 0
+    sgs = get_resources("aws_security_group")
+    
+    for sgs as _, sg {
+        # Target groups explicitly named or intended for the database
+        if sg.address matches "db_server" {
+            ingress_rules = sg.change.after.ingress else []
+            for ingress_rules as _, ingress_rule {
+                from_port = ingress_rule.from_port else 0
+                to_port = ingress_rule.to_port else 0
+                
+                if from_port != 3306 or to_port != 3306 {
+                    print("Violation: DB Security Group " + sg.address + " allows non-3306 port inbound: " + string(from_port) + "-" + string(to_port))
+                    violators += 1
+                }
+            }
+        }
+    }
+    return violators == 0
+}
+
+# Main Rule Execution
+ssh_allowed    = validate_ssh()
+routing_valid  = validate_subnet_routing()
+db_ports_valid = validate_db_ports()
+
+main = rule {
+    ssh_allowed and routing_valid and db_ports_valid
+}

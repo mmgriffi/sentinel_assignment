@@ -1,0 +1,67 @@
+import "strings"
+import "types"
+
+outputs = {
+	"vpc_cidr_block": {
+		"sensitive": false,
+		"type":      "string",
+		"value":     "10.0.0.0/16",
+	},
+}
+
+_modules = {
+	"root": {
+		"data": {
+			"aws_ssm_parameter": {
+				"ubuntu": {
+					0: {
+						"attr": {
+							"arn":             "arn:aws:ssm:eu-west-1::parameter/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+							"id":              "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+							"insecure_value":  "ami-09aa01115a0a7faab",
+							"name":            "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+							"region":          "eu-west-1",
+							"type":            "String",
+							"value":           "ami-09aa01115a0a7faab",
+							"version":         21,
+							"with_decryption": true,
+						},
+						"depends_on": [],
+						"id":         "/aws/service/canonical/ubuntu/server/26.04/stable/current/amd64/hvm/ebs-gp3/ami-id",
+						"tainted":    false,
+					},
+				},
+			},
+		},
+		"path":      [],
+		"resources": {},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.17.1"
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources
