@@ -1,18 +1,33 @@
 {
   "mock": {
     "tfplan/v2": {
-      "resource_changes": [
-        {
+      "resource_changes": {
+        "aws_instance.ec2_server": {
           "type": "aws_instance",
           "mode": "managed",
           "change": {
             "actions": ["create"],
             "after": {
-              "instance_type": "t3.micro" 
+              "instance_type": "t3.micro",
+              "metadata_options": [
+                {
+                  "http_tokens": "required"
+                }
+              ],
+              "root_block_device": [
+                {
+                  "encrypted": true
+                }
+              ],
+              "ebs_block_device": [
+                {
+                  "encrypted": true
+                }
+              ]
             }
           }
         }
-      ]
+      }
     }
   },
   "test": {

@@ -56,7 +56,7 @@ https://app.terraform.io/app/atuIAC-terraform-mmgriffi-tf-org/workspaces
 |Policy Name|Details|Passing Image|Failing Image|Notes
 |----|----|----|----|----|
 |Sovergnity|limited to a single region "allowed_regions = ["eu-west-1"]"   |[Pass](/images/TerraformUI_Apply_Passed_Sovereignty.jpg)|[Fail](/images/TerraformUI_Apply_Failed_Sovereignty.jpg)|switch terrafrom.tfvars to aws_region = "us-east-1", commit changes to GitHub and re-trigger Terraform UI run|
-|Instance-type|uses array of instance types "allowed_types = ["t3.micro", "t3.small","t2.micro"]"||||
+|Instance-type|uses array of instance types "allowed_types = ["t3.micro", "t3.small","t2.micro"]", ensure ebs is encrypted and IMDSv2 is enabled||[Advisory](/images/TerraformUI_FailAdvisory_Instance-type.jpg)||
 
 
 see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)

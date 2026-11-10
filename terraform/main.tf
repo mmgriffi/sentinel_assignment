@@ -4,13 +4,27 @@ data "aws_ssm_parameter" "ubuntu" {
   name = var.ubuntu_ami
 }
 
-# Create EC2 Instance
+# create ec2 instance
 resource "aws_instance" "ec2_server" {
   ami                    = data.aws_ssm_parameter.ubuntu.value
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.ec2_server.id]
   key_name               = var.keypair
+
+  # Enforce IMDSv2
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required" # Enforces IMDSv2
+    http_put_response_hop_limit = 1
+  }
+
+  # Encrypt Root Block Device
+  root_block_device {
+    encrypted   = true
+    volume_type = "gp3" # Recommended default for general purpose storage
+  }
+
 
   # Fix: Links the IAM profile directly to your virtual machine resource
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
