@@ -135,11 +135,23 @@ Should the sentinel.hcl file reference mock data anymore or does that matter ?
 
 if I remove the reference to the mock data, change tfvars and run on the terraform UI in plan mode, 
 I should see a rule violation if I'm trying to set a region outside the policy (eu-west-1)
+================================
+### Network policies
 
+can you review the attached terraform network.tf file, it create an AWS VPC with subnets and has 
+specific ports open for SSH, SQL access. 
+Task : create a sentinel policy that will enforce restrictions on
+ unbound SSH access, ensure only the public subnet is accessable from outside 
+the VPC and the db subnet only allows port 3306 inbound access.
 
+For the .sentinel files, is it possible to use variables in an seperate file,
+hard coding the values does make it harder to maintain.
 
-## IAM users / groups / roles
-
+### IAM / AWS restrictions.
 is is possible to create an AWS iam user that can only access a specific region ?
 I've created the user + attached it to a policy containing the above as an inline policy. To test, how do I add permissions to (for example) create a S3 bucket ?
 can we expand on the permissions. I want to allow this account add VPC, subnet components , s3 bucket, ec2 instance and rds database, but as before restricted to eu-west-1.
+(this did lead off in a tangent... while I could create a IAM user, apply policies to a group, in practice using this method ran into lots of 
+problems - while I could grant it permissions to create EC2 , VPC etc , a restricted user ran into other problems listing/reading some components)
+Looks like this should be planned at the Organization level with policies there, rather than groups.AWSTemplateFormatVersion: "2010-09-09"
+
