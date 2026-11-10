@@ -60,20 +60,22 @@ For an Enterprise /production environment, the Policies should be maintained in 
 - Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
   - With the mock data these pass. 
   - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected when executed via CLI 
-
    
-## Generate 
+## Create test runs  
 
 https://app.terraform.io/app/atuIAC-terraform-mmgriffi-tf-org/workspaces
 
-- Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
+The test runs generated a plan and policy 
 
 |Policy Name|Details|Passing Image|Failing Image|Notes
 |----|----|----|----|----|
-|Sovergnity|limited to a single region "allowed_regions = ["eu-west-1"]"   |[Pass](/images/TerraformUI_Apply_Passed_Sovereignty.jpg)|[Fail](/images/TerraformUI_Apply_Failed_Sovereignty.jpg)|switch terrafrom.tfvars to aws_region = "us-east-1", commit changes to GitHub and re-trigger Terraform UI run|
-|Instance-type|uses array of instance types "allowed_types = ["t3.micro", "t3.small","t2.micro"]", ensure ebs is encrypted and IMDSv2 is enabled||[Advisory](/images/TerraformUI_FailAdvisory_Instance-type.jpg)||
+|Sovergnity|limited to a single region "allowed_regions = ["eu-west-1"]"   |![Pass](/images/TerraformUI_Apply_Passed_Sovereignty.jpg)|![Fail](/images/TerraformUI_Apply_Failed_Sovereignty.jpg)|To test switch terrafrom.tfvars to aws_region = "us-east-1", commit changes to GitHub and re-trigger Terraform UI run for new plan|
+|Instance-type|uses array of instance types````"allowed_types = ["t3.micro", "t3.small","t2.micro"]"````and ensure ebs is encrypted and IMDSv2 is enabled|![Pass](/images/TerraformUI_Apply_Passed_Sovereignty.jpg)|![Fail/Advisory](/images/TerraformUI_FailAdvisory_Instance-type.jpg)|To test, updated main.tf with IMDSV2 , encryption settings and re-ran plan|
+|Network|check if port 22 is open to 0.0.0.0/0 (if so flag unbound acccess), ensure only public subnets route to internet, ensure db security group ingress only has port 3306  |||
+|allowed-providers|limit providers using ````allowed_providers = ["registry.terraform.io/hashicorp/aws",]````|||
 
-
+Note: Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
+- 
 see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)
 
 
