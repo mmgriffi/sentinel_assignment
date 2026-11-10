@@ -1,9 +1,7 @@
 import "tfplan/v2" as tfplan
 
 # 1. Define allowed compute sizes
-allowed_types = ["t3.micro", "t3.small","t2.micro"]
-#allowed_types = ["t3.small"]
-
+allowed_types = ["t3.micro", "t3.small", "t2.micro"]
 
 # 2. Filter out only the EC2 instances from the tfplan import
 ec2_instances = filter tfplan.resource_changes as _, rc {
@@ -17,6 +15,26 @@ instance_type_allowed = all ec2_instances as _, instance {
     instance.change.after.instance_type in allowed_types
 }
 
+# 4. Rule to enforce IMDSv2 (Requires http_tokens to be set to "required")
+imds_v2_enforced = all ec2_instances as _, instance {
+    any instance.change.after.metadata_options else [] as _, metadata {
+        metadata.http_tokens is "required"
+    }
+}
+
+# 5. Rule to check that root and block devices have encryption enabled
+ebs_encryption_enabled = all ec2_instances as _, instance {
+    all instance.change.after.root_block_device else [] as _, root {
+        root.encrypted is true
+    } and
+    all instance.change.after.ebs_block_device else [] as _, ebs {
+        ebs.encrypted is true
+    }
+}
+
+# Main rule evaluation
 main = rule {
-    instance_type_allowed
+    instance_type_allowed and
+    imds_v2_enforced and
+    ebs_encryption_enabled
 }

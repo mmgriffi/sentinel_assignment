@@ -119,8 +119,8 @@ resource "aws_security_group" "ec2_server" {
 # SSH access restricted to 1 IP address
   ingress {
     description = "SSH from anywhere"
-    from_port   = 22
-    to_port     = 22
+    from_port   = var.ssh_port
+    to_port     = var.ssh_port
     protocol    = "tcp"
     cidr_blocks = [var.admin_ip]
   }
@@ -149,8 +149,8 @@ resource "aws_security_group" "db_server" {
   # Secure Path: Allows 3306 traffic ONLY originating from your ec2_server security group
   ingress {
     description     = "Allow MySQL traffic from EC2 server"
-    from_port       = 3306
-    to_port         = 3306
+    from_port       = var.sql_port
+    to_port         = var.sql_port
     protocol        = "tcp"
     security_groups = [aws_security_group.ec2_server.id]
   }

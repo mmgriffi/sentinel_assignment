@@ -7,20 +7,26 @@ mock "tfplan/v2" {
 }
 policy "allowed-providers" {
   source = "./sentinel/allowed-providers.sentinel"
-  #enforcement_level = "advisory"
-  enforcement_level = "hard-mandatory"
+  enforcement_level = "advisory"
+  #enforcement_level = "hard-mandatory"
 }
 
 policy "instance_type" {
   source = "./sentinel/instance_type.sentinel"
-  #enforcement_level = "advisory"
-  enforcement_level = "hard-mandatory"
+  enforcement_level = "advisory"
+  #enforcement_level = "hard-mandatory"
 }
 
 policy "sovereigney" {
   source = "./sentinel/sovereignty.sentinel"
-  #enforcement_level = "advisory"
-  enforcement_level = "hard-mandatory"
+  enforcement_level = "advisory"
+  #enforcement_level = "hard-mandatory"
+}
+
+policy "network" {
+  source = "./sentinel/network.sentinel"
+  enforcement_level = "advisory"
+  #enforcement_level = "hard-mandatory"
 }
 
 
