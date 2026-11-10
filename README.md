@@ -42,9 +42,12 @@ To give a scenario I could test and experiment with sentinel I modified my terra
    |-variables.tf  Variable definition with defaults.
    |-terraform.tfvars actual variable values / overrides.
 ````
-I stood up the environment using Terraform apply and validatd some of the relevant aspects (all components in correct region, access between EC2 and RDS and S3 .. again , overkill)
+I stood up the environment using Terraform apply and validated the relevant aspects (all components in correct region, access between EC2 and RDS and S3 .. again , overkill)
 
-## Sentinel.
+The Terraform plan binary in included in this repo ![image](/images/TerraformPlan-out-tfplan.jpg) 
+The binary file is located in terraform\sentinelTf.tfplan.
+
+## Sentinel Policies and Terrform UI.
 - I created a HashiCorp Cloud and HCP Terraform accounts , downloaded the sentinel binary file.
 - Followed assignment/Gemini on structuring the sentinel files, test folders and content. 
 - Created an organisation, project "sentinel-test" and workspace "Work_Sentinel_test" on Terraform hcl and linked this github repository to it.
@@ -56,12 +59,11 @@ I stood up the environment using Terraform apply and validatd some of the releva
 For an Enterprise /production environment, the Policies should be maintained in a seperate GitHub repository from terraform code. This would allow policy changes to be written in the .sentinel files and reflected automatically in the policy set. Also, following best practices in both security & seperation of duty, managing policies should be restricted. 
 [Terraform Best Practices](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/organization)
 
-
 - Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
   - With the mock data these pass. 
   - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected when executed via CLI 
    
-## Create test runs  
+## Create test runs on Terraform UI
 
 https://app.terraform.io/app/atuIAC-terraform-mmgriffi-tf-org/workspaces
 
@@ -77,6 +79,15 @@ The test runs generated a plan and policy
 Note: Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
 - 
 see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)
+
+## Use sentinel CLI to execute policies locally.
+
+Terraform UI will create a mock data package based on the most recent terraform scripts in the GitHub repo. Once extracted and placed in the terraform folder of this repo I could test the policies locally. The [sentinel.hcl](sentinel.hcl) file contains the list of policies to execute against and an enforcement level.  If I wanted to trigger policy failures a change to the variables.tf or terraform.tfvars could be committed and a new mock data set generated. 
+
+|Policy Name | Passing Image | Failing Image | Notes|
+|----|----|----|----|
+|InstanceType|| IMSDv2 and ebs encryption not set ![failure](/images/sentinel_apply_policy_failing.jpg)||
+
 
 
 # Resources used.
