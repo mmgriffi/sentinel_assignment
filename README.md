@@ -42,19 +42,21 @@ To give a scenario I could test and experiment with sentinel I modified my terra
    |-variables.tf  Variable definition with defaults.
    |-terraform.tfvars actual variable values / overrides.
 ````
-(there is no need for "depends" in this scenario)
-
 I stood up the environment using Terraform apply and validatd some of the relevant aspects (all components in correct region, access between EC2 and RDS and S3 .. again , overkill)
 
 ## Sentinel.
-- I created accounts on HCP Terraform and HCP Cloud (linking these 2 was promlematic and downloaded the sentinel binary file. )
-- Followed assignment/Gemini on structing the sentinel files, test folders and content. 
-- Created a project and workspace on terraform hcl and linked this github repository to it. 
+- I created a HashiCorp Cloud and HCP Terraform accounts , downloaded the sentinel binary file.
+- Followed assignment/Gemini on structuring the sentinel files, test folders and content. 
+- Created an organisation, project "sentinel-test" and workspace "Work_Sentinel_test" on Terraform hcl and linked this github repository to it.
+- In the organisation, I needed to create "individually managed policies" and a policy set to cover them. The Terraform free tier has restictions:
+  - 1 policy set. (for free-tier this cannot be created by linking to GitHub and reading the sentinel.hcl / .sentinel files)
+  - 1 policy only may be set "Hard Manadatory" or "Soft Mandatory", the rest needed to be "Advisory".
 - Created a run (plan only) which generated mock/test data to download. Extracted files and placed this in the terraform folder. [zipfile](/terraform/run-JvxYqKbp68aBDmy4-sentinel-mocks.tar.gz)
- 
+
+For an Enterprise /production environment, the Policies should be maintained in a seperate GitHub repository from terraform code. This would allow policy changes to be written in the .sentinel files and reflected automatically in the policy set. Also, following best practices in both security & seperation of duty, managing policies should be restricted. 
+[Terraform Best Practices](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/organization)
 
 
-At this stage the .sentinel files  were not included in the repo.
 - Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
   - With the mock data these pass. 
   - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected when executed via CLI 
@@ -63,7 +65,6 @@ At this stage the .sentinel files  were not included in the repo.
 ## Generate 
 
 https://app.terraform.io/app/atuIAC-terraform-mmgriffi-tf-org/workspaces
-
 
 - Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
 
