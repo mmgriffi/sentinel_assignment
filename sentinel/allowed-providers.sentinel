@@ -12,16 +12,3 @@ main = rule {
         rc.provider_name in allowed_providers
     }
 }
-
-#import "tfplan/v2" as tfplan
-
-## Filter all resource changes to find providers.. use a split function. 
-#allowed_providers = ["aws"]
-
-## Rule to validate the provider
-#main = rule {
-#    all tfplan.resource_changes as _, rc {
-#      # Splits "registry.terraform.io/hashicorp/aws" by "/" and checks the last item
-#        strings.split(rc.provider_name, "/")[-1] in allowed_providers
-#    }
-#}

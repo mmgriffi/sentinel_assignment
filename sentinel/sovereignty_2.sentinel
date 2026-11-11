@@ -1,0 +1,47 @@
+import "tfconfig/v2" as tfconfig
+import "tfplan/v2" as tfplan
+import "json"
+
+allowed_regions = ["eu-west-1"]
+violating_providers = {}
+aws_providers_checked = 0
+
+for tfconfig.providers as address, provider {
+    if provider.name is "aws" {
+        aws_providers_checked += 1
+        
+        # 1. Check for a hardcoded region first
+        region = provider.config.region.constant_value else null
+        
+        # 2. If it uses a variable (e.g., "var.aws_region"), look up its resolved value in tfplan
+        if region is null and (provider.config.region.references else null) is not null {
+            for provider.config.region.references as ref {
+                if ref matches "^var\\.(.*)$" {
+                    var_name = ref[4:] # Extracts "aws_region" from "var.aws_region"
+                    region = tfplan.variables[var_name].value else null
+                }
+            }
+        }
+        
+        # 3. Record a violation if the region is missing or not in the allowed list
+        if region is null or region not in allowed_regions {
+            violating_providers[address] = region
+        }
+    }
+}
+
+# Require at least 1 AWS provider to be validated AND zero violations (prevents empty-loop false passes)
+main = rule {
+    aws_providers_checked > 0 and length(violating_providers) is 0
+}
+
+if aws_providers_checked is 0 {
+    print("Policy Error: No AWS provider blocks were found in tfconfig.providers.")
+}
+
+if length(violating_providers) > 0 {
+    print("Data Residency Violation: AWS providers must only target approved regions:", json.marshal(allowed_regions))
+    for violating_providers as addr, reg {
+        print("  - Provider config:", addr, "| Detected region:", reg)
+    }
+}

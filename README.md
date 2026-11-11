@@ -101,6 +101,22 @@ The passing  and failing test cases can be updated without needing to regenerate
 |network|This is the network test case with unbound SSH access and incorrect port access to db subnet ![image](/images/sentinel-testcase-network.jpg)|Failing test case details ![image](/images/sentinel-CLI-test-network.jpg)|A real IP address (e.g 86.45.159.23) would pass|
 
 
+## Decision justification in the README.md 
+• Comments on your evaluation of the effectiveness of Policy as Code for digital sovereignty. 
+• The limitations of region-based data residency controls. 
+
+Relying soley on Terraform /Policy as code to enfore digital sovereignty/residency still allowed a user with the relevant console / AWS CLI access change or add resources outside of Terrafrom. Applying SCP (Service Control Policies) to an account with the correct restrictions sets a limit on what the user can do with AWS Console, CLI or Terraform can do.
+
+|Org/Account|Console Effect|Note|
+|----|----|----|
+|euwest-operator is an IAM user in euwest-user account. That has a "Deny-Non-EU-West-1-Regions" policy ![image](/images/AWS_ORG_EUWestPolicy.jpg)|Attempt to create a resource outside eu-west-1 is denied ![image](/images/AWS-euwest-1-account_denied.jpg)||
+
+• The importance of supply chain integrity. 
+• The limitations of Sentinel and Terraform plan-time enforcement. 
+• The challenges of maintaining policies as cloud environments evolve. 
+
+
+
 ## AI Prompts
 I used Google Gemini to generate policies once I had created the Terraform scripts and applied them in AWS. 
 

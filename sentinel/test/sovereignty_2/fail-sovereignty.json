@@ -1,0 +1,28 @@
+{
+  "mock": {
+    "tfconfig/v2": {
+      "providers": {
+        "aws": {
+          "name": "aws",
+          "config": {
+            "region": {
+              "references": [
+                "var.aws_region"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "tfplan/v2": {
+      "variables": {
+        "aws_region": {
+          "value": "us-east-1"
+        }
+      }
+    }
+  },
+  "test": {
+    "main": false
+  }
+}
