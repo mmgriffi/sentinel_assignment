@@ -101,18 +101,10 @@ The passing  and failing test cases can be updated without needing to regenerate
 
 
 
+## AI Prompts
+I used Google Gemini to generate policies once I had created the Terraform scripts and applied them in AWS. 
 
-# Resources used.
-- "3.0 Terraform AWS_2026.pdf" to create an EC2 instance. Changed to use my assignment VPC/subnet from the 1st assigment. Allowed me login and validate.
-  - Changed the IAM and use plan / apply to update the instance.
-  - Destory.
- - "4_0 Terraform AWS_2026.pdf" to create storage with variables. 
-
-(This got me started with basic Terraform. )
-
-- This tutorial gave a walkthrough on a single node webserver , 1 vpc + 2 subnets.  [link](https://aws.plainenglish.io/building-aws-vpc-and-ec2-infrastructure-with-terraform-a-hands-on-devops-tutorial-4955eac76f4f)
-
-
+See [AI_Prompts](/documentation/AI_Prompts.md)
 
 
 # Links
