@@ -98,7 +98,7 @@ The passing  and failing test cases can be updated without needing to regenerate
 |Policy Name|Testcase content|Results|Command|
 |----|----|----|----|
 |sovereignty|This is the content of an failing test case with us-east-1![image](/images/sentinel-testcase-sovereignty.jpg)|This shows the pass/fail test cases.![image](/images/sentinel-CLI-test-sovereignty.jpg)| ````sentinel test sovereignty.sentinel````|
-
+|network|This is the network test case with unbound SSH access and incorrect port access to db subnet ![image](/images/sentinel-testcase-network.jpg)|Failing test case details ![image](/images/sentinel-CLI-test-network.jpg)|A real IP address (e.g 86.45.159.23) would pass|
 
 
 ## AI Prompts

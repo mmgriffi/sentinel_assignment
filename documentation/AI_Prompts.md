@@ -1,6 +1,7 @@
 # AI prompts
 
-### These prompts were all run against Google Gemini (I checked , they do not provide a version number)
+Note: These prompts were all run against Google Gemini 
+(Google Gemini does not include a version number)
 
 ========================================================================================
 ## Sentinel Structure
@@ -124,7 +125,7 @@ How to generate  pass / fail test files to match each category.
 Do you need additional data/files ? 
 ========================================================================================
 
-#  Using Terrafrom online.
+##  Using Terrafrom online.
 I have a Terraform definition is on GitHub, I have not included any .hcl or .sentinel files yet. 
 Task :  Can you list the steps to connect my terraform online workspace to the repository and generate a plan / mock data. 
 I will then need to download the mock data to test some sentinel policies locally via CLI.
@@ -143,7 +144,7 @@ Should the sentinel.hcl file reference mock data anymore or does that matter ?
 if I remove the reference to the mock data, change tfvars and run on the terraform UI in plan mode, 
 I should see a rule violation if I'm trying to set a region outside the policy (eu-west-1)
 ================================
-### Network policies
+## Network policies
 
 can you review the attached terraform network.tf file, it create an AWS VPC with subnets and has 
 specific ports open for SSH, SQL access. 
@@ -154,19 +155,21 @@ the VPC and the db subnet only allows port 3306 inbound access.
 For the .sentinel files, is it possible to use variables in an seperate file,
 hard coding the values does make it harder to maintain.
 
-### IAM / AWS restrictions.
+## IAM / AWS restrictions.
 is is possible to create an AWS iam user that can only access a specific region ?
 I've created the user + attached it to a policy containing the above as an inline policy. To test, how do I add permissions to (for example) create a S3 bucket ?
 can we expand on the permissions. I want to allow this account add VPC, subnet components , s3 bucket, ec2 instance and rds database, but as before restricted to eu-west-1.
+
 (this did lead off in a tangent... while I could create a IAM user, apply policies to a group, in practice using this method ran into lots of 
 problems - while I could grant it permissions to create EC2 , VPC etc , a restricted user ran into other problems listing/reading some components)
-Looks like this should be planned at the Organization level with policies there, rather than groups.AWSTemplateFormatVersion: "2010-09-09"
 
-##### Expanding instance-type.sentinel
+Note: Looks like this should be planned at the Organization level with policies there, rather than groups... so I stopped this. 
+
+## Expanding instance-type.sentinel
 Can you review this terraform sentinel policy for the EC2 instance ,
 I would like to expand it to check that IMDSv2 is set and that encrypted EBS storage is used.
 
-##############The changes to the terraform EC2 create block are on this prompt :  
+## The changes to the terraform EC2 create block are on this prompt :  
 Review this terraform block to create an ec2 instance, change it to enable imdsv2 and ensure the root and block devices are encrypted 
 
 "# Create EC2 Instance
