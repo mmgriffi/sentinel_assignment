@@ -59,7 +59,7 @@ The binary file is located in terraform\sentinelTf.tfplan.
 For an Enterprise /production environment, the Policies should be maintained in a seperate GitHub repository from terraform code. This would allow policy changes to be written in the .sentinel files and reflected automatically in the policy set. Also, following best practices in both security & seperation of duty, managing policies should be restricted. 
 [Terraform Best Practices](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/organization)
 
-- Gemini had given me the policy definition suitale for instance-type, soverignity and allowed-providers. 
+- Initially Google Gemini had given me the policy definition suitable for instance-type, sovereignty and allowed-providers. 
   - With the mock data these pass. 
   - I was able to substitute instance types, regions that were not allowed in the .sentinel files and these failed/flagged as expected when executed via CLI 
    
@@ -80,13 +80,25 @@ Note: Terraform Policy definitions only allow 1 hard enforcement so I needed to 
 - 
 see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)
 
-## Use sentinel CLI to execute policies locally.
+## Use Sentinel CLI to test policies with Mock Terraform data.
 
 Terraform UI will create a mock data package based on the most recent terraform scripts in the GitHub repo. Once extracted and placed in the terraform folder of this repo I could test the policies locally. The [sentinel.hcl](sentinel.hcl) file contains the list of policies to execute against and an enforcement level.  If I wanted to trigger policy failures a change to the variables.tf or terraform.tfvars could be committed and a new mock data set generated. 
 
 |Policy Name | Passing Image | Failing Image | Notes|
 |----|----|----|----|
-|InstanceType|| IMSDv2 and ebs encryption not set ![failure](/images/sentinel_apply_policy_failing.jpg)||
+|InstanceType|Mock data regenerated with IMSDv2 and encryption set ![pass](/images/sentinel_apply_policy_passing.jpg)| IMSDv2 and ebs encryption not initially set ![failure](/images/sentinel_apply_policy_failing.jpg)||
+||||
+
+## Use Sentinel CLI to test policies with Mock data snippets.
+Sentinel CLI has a "test" mode that will evaluate a policy with test case data. This does not use the sentinel.hcl file. Individual policies can be checked, or all policies in the current folder. 
+The structure I arrived at is ![here](/images/TestFileStructure.jpg)
+
+The passing  and failing test cases can be updated without needing to regenerate the Terraform mock data.  
+
+|Policy Name|Testcase content|Results|Command|
+|----|----|----|----|
+|sovereignty|This is the content of an failing test case with us-east-1![image](/images/sentinel-testcase-sovereignty.jpg)|This shows the pass/fail test cases.![image](/images/sentinel-CLI-test-sovereignty.jpg)| ````sentinel test sovereignty.sentinel````|
+
 
 
 
