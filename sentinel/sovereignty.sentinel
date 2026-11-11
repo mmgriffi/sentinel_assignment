@@ -8,7 +8,7 @@ allowed_regions = ["eu-west-1"]
 data_resources = [
     "aws_s3_bucket",
     "aws_db_instance",      # RDS Instances
-    "aws_dynamodb_table",
+    "aws_instance",
 ]
 
 # Filter all resources being created or modified

@@ -78,7 +78,7 @@ The test runs generated a plan and policy
 
 Note: Terraform Policy definitions only allow 1 hard enforcement so I needed to configure others as advisory.
 - 
-see [logs](documentation\run-evumM51u7MjMAAKA-policy-check-log.txt)
+see [logs](/documentation/run-evumM51u7MjMAAKA-policy-check-log.txt)
 
 ## Use Sentinel CLI to test policies with Mock Terraform data.
 
