@@ -155,3 +155,20 @@ can we expand on the permissions. I want to allow this account add VPC, subnet c
 problems - while I could grant it permissions to create EC2 , VPC etc , a restricted user ran into other problems listing/reading some components)
 Looks like this should be planned at the Organization level with policies there, rather than groups.AWSTemplateFormatVersion: "2010-09-09"
 
+##### Expanding instance-type.sentinel
+Can you review this terraform sentinel policy for the EC2 instance ,
+I would like to expand it to check that IMDSv2 is set and that encrypted EBS storage is used.
+
+##############The changes to the terraform EC2 create block are on this prompt :  
+Review this terraform block to create an ec2 instance, change it to enable imdsv2 and ensure the root and block devices are encrypted 
+
+"# Create EC2 Instance
+resource "aws_instance" "ec2_server" {
+  ami                    = data.aws_ssm_parameter.ubuntu.value
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.ec2_server.id]
+  key_name               = var.keypair"
+  
+#additonal mock structures for sentinel test
+Can you provide pass and fail json mock data files to test this policy (instance_type.sentinel)

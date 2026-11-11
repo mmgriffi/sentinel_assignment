@@ -11,11 +11,31 @@
               "region": "us-east-1"
             }
           }
+        },
+        {
+          "address": "aws_db_instance.example",
+          "type": "aws_db_instance",
+          "change": {
+            "actions": ["create"],
+            "after": {
+              "region": "us-east-1"
+            }
+          }
+        },
+        {
+          "address": "aws_instance.example",
+          "type": "aws_instance",
+          "change": {
+            "actions": ["create"],
+            "after": {
+              "region": "us-east-1"
+            }
+          }
         }
       ]
     }
   },
   "test": {
-    "main": false
+    "main": true
   }
 }
