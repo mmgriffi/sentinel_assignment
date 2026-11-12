@@ -58,9 +58,9 @@ The Terraform plan binary in included in this repo ![image](/images/TerraformPla
 The binary file is located in terraform\sentinelTf.tfplan.
 
 ## Sentinel Policies and Terrform UI.
-- I created a HashiCorp Cloud and HCP Terraform accounts , downloaded the sentinel binary file.
-- Followed assignment/Gemini on structuring the sentinel files, test folders and content. 
-- Created an organisation, project "sentinel-test" and workspace "Work_Sentinel_test" on Terraform hcl and linked this github repository to it.
+- I created a HashiCorp Cloud and HCP Terraform accounts , downloaded the **sentinel** binary file.
+- Followed assignment suggested layoue on structuring the sentinel files, test folders and content. 
+- Created a Terraform organisation, project "sentinel-test" and workspace "Work_Sentinel_test" and linked this github repository to it.
 - In the organisation, I needed to create "individually managed policies" and a policy set to cover them. The Terraform free tier has restictions:
   - 1 policy set. (for free-tier this cannot be created by linking to GitHub and reading the sentinel.hcl / .sentinel files)
   - 1 policy only may be set "Hard Manadatory" or "Soft Mandatory", the rest needed to be "Advisory".
@@ -196,11 +196,14 @@ approved_prefixes = [
 
 When a Terraform plan runs, certain items are marked as "known after apply", so sentinel is unable to validate rules that depend on a final value. This may be an issue with IP addresses, to address this Terraform can run addition checks after the address is known that flag if it falls outside the allowed range  (e.g regular expression checks for patterns of IP address )  
 
-According to terraform ( https://developer.hashicorp.com/terraform/policy/compare ) , sentinel executed after Terraform init, by which time any modules or 3rd party package are already downloaded.  
+According to terraform ( https://developer.hashicorp.com/terraform/policy/compare ) , Sentinel executes after Terraform init, by which time any modules or 3rd party package could be downloaded, risking you running untrusted binaries or malicious code. 
+While this assignment is using an up to date Terraform >v1.16, the sentinel.hcl and .sentinel files are written to an older framework and need
+to be rewritten using HCL-based Terraform Policy framework. 
+(As this assignment is only using Terraform/AWS for sources/providers .... I did not revisit this.)
 
 ## The challenges of maintaining policies as cloud environments evolve ##
 
-Maintaining policies involve static lists, references to specific images or instance types creates significant overhead as these change as older versions are retired, or patches are released that change the ID. Cloud providers release new services, retire older ones and update the configurations referenced by Terraform over time. This has impacts both for the Terraform scripts as well as the policies. Both will need to be maintained on an ongoing basis.  
+Maintaining policies involve static lists, references to specific images or instance types creates significant overhead as these change as older versions are retired, or patches are released that change the ID. Cloud providers release new services, retire older ones and update the configurations referenced by Terraform over time. This has impacts both for the Terraform scripts as well as the policies. Both will need to be maintained on an ongoing basis.  This assignment illustrates that fact, after following tutorials I find that the structure I've used of .sentinel files ideally needs to be rewritten to use a newer, more secure framework. 
 
 **Examples :** 
  - In this simple assignment I've used 1 specific Ubuntu AMI ID in terraform, and a range of instance types in the sentinel policy. This presents a challenge as over time the AMI ID may be deprecated, patched with a new ID and the instance type ("t2.micro") will eventaully be retired. 
