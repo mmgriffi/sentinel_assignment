@@ -51,7 +51,7 @@ variable "private_subnet-b_cidr" {
 variable "admin_ip" {
   description = "IP address of the user laptop"
   type        = string
-  default     = "86.45.159.23/32"
+  default     = "10.10.10.10/32"
 }
 
 # EC2 Instance Type
