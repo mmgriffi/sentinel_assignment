@@ -60,7 +60,9 @@ The binary file is located in terraform\sentinelTf.tfplan.
 ## Sentinel Policies and Terrform UI.
 - I created a HashiCorp Cloud and HCP Terraform accounts , downloaded the **sentinel** binary file.
 - Followed assignment suggested layoue on structuring the sentinel files, test folders and content. 
-- Created a Terraform organisation, project "sentinel-test" and workspace "Work_Sentinel_test" and linked this github repository to it.
+- Created a Terraform organisation, project "sentinel-test" and workspace "Work_Sentinel_test" and linked this github repository to it. Merges in the GH repo trigger Terraform runs to generate a new plan. (apply requires confirmation)
+![image](/images/Terraform_UI_runlist.jpg)
+
 - In the organisation, I needed to create "individually managed policies" and a policy set to cover them. The Terraform free tier has restictions:
   - 1 policy set. (for free-tier this cannot be created by linking to GitHub and reading the sentinel.hcl / .sentinel files)
   - 1 policy only may be set "Hard Manadatory" or "Soft Mandatory", the rest needed to be "Advisory".
