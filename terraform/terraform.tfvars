@@ -16,7 +16,7 @@ private_subnet-b_cidr   = "10.0.3.0/24"
 ssh_port = "22"
 sql_port = "3306"
 # update to match your current IP address
-admin_ip  = "86.45.159.23/32"
+admin_ip  = "10.10.10.10/32"
 
 # EC2 Configuration
 instance_type    = "t2.micro"
